@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, FileText, Users, CheckCircle, Clock, Star, Phone, Mail, MapPin, Upload } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, FileText, Users, CheckCircle, Clock, Star, Phone, Mail, MapPin, Upload, X } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 
@@ -67,6 +67,8 @@ const programs = [
 
 export default function Admissions() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [submissionData, setSubmissionData] = useState<{applicationNumber: string} | null>(null);
   const [formData, setFormData] = useState({
     // Student Information
     studentFirstName: '',
@@ -142,9 +144,14 @@ export default function Admissions() {
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     // Prevent Enter key from submitting form unless on final step
-    if (e.key === 'Enter' && currentStep < totalSteps) {
+    if (e.key === 'Enter') {
       e.preventDefault();
-      nextStep();
+      e.stopPropagation();
+      
+      if (currentStep < totalSteps) {
+        nextStep();
+      }
+      // On final step, allow form submission by not calling nextStep
     }
   };
 
@@ -198,8 +205,15 @@ export default function Admissions() {
   };
 
   const nextStep = () => {
-    if (validateStep(currentStep)) {
+    console.log('nextStep called - currentStep:', currentStep);
+    const isValid = validateStep(currentStep);
+    console.log('Step validation result:', isValid);
+    
+    if (isValid) {
+      console.log('Validation passed, moving to next step');
       setCurrentStep(prev => Math.min(prev + 1, totalSteps));
+    } else {
+      console.log('Validation failed for step:', currentStep);
     }
   };
 
@@ -219,12 +233,16 @@ export default function Admissions() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // If not on final step, just go to next step
+    console.log('handleSubmit called - currentStep:', currentStep, 'totalSteps:', totalSteps);
+    
+    // If not on final step, prevent submission completely
     if (currentStep < totalSteps) {
-      nextStep();
-      return;
+      console.log('Not on final step, preventing submission');
+      e.stopPropagation();
+      return false;
     }
     
+    console.log('On final step, proceeding with submission');
     // Only submit on final step
     setIsSubmitting(true);
     
@@ -233,6 +251,8 @@ export default function Admissions() {
       const { applicationsApi } = await import('@/lib/api');
       
       // Prepare data for API
+      console.log('Preparing API data, dateOfBirth value:', formData.dateOfBirth);
+      
       const applicationData = {
         // Student Information
         studentFirstName: formData.studentFirstName,
@@ -267,7 +287,8 @@ export default function Admissions() {
       
       if (response.success) {
         const appNumber = response.data.application.applicationNumber;
-        alert(`Application submitted successfully!\n\nApplication Number: ${appNumber}\n\nWe will contact you within 3-5 business days. Please keep this number for reference.`);
+        setSubmissionData({ applicationNumber: appNumber });
+        setShowSuccessModal(true);
         
         // Reset form
         setFormData({
@@ -671,7 +692,10 @@ export default function Admissions() {
                           type="date"
                           name="dateOfBirth"
                           value={formData.dateOfBirth}
-                          onChange={handleInputChange}
+                          onChange={(e) => {
+                            console.log('Date input changed:', e.target.value);
+                            handleInputChange(e);
+                          }}
                           max={new Date().toISOString().split('T')[0]}
                           className={`w-full px-3 py-2 md:px-4 md:py-3 border rounded-md md:rounded-lg text-sm md:text-base focus:ring-2 focus:ring-primary-red focus:border-transparent focus:outline-none transition-all duration-200 ${
                             formErrors.dateOfBirth ? 'border-red-300 bg-red-50' : 'border-gray-300 focus:border-primary-red'
@@ -829,7 +853,7 @@ export default function Admissions() {
                           name="relationship"
                           value={formData.relationship}
                           onChange={handleInputChange}
-                          className="w-full px-5 py-4 border border-gray-300 rounded-xl text-base focus:ring-2 focus:ring-primary-red focus:border-primary-red focus:border-transparent transition-all duration-200"
+                          className="w-full px-5 py-4 border border-gray-300 rounded-xl text-base focus:ring-0 focus:outline-none focus:border-primary-red transition-all duration-200"
                         >
                           <option value="">Select Relationship</option>
                           <option value="parent">Parent</option>
@@ -948,7 +972,7 @@ export default function Admissions() {
                           value={formData.previousSchool}
                           onChange={handleInputChange}
                           placeholder="Enter the name of the previous school"
-                          className="w-full px-5 py-4 border border-gray-300 rounded-xl text-base focus:ring-2 focus:ring-primary-red focus:border-primary-red focus:border-transparent transition-all duration-200"
+                          className="w-full px-5 py-4 border border-gray-300 rounded-xl text-base focus:ring-0 focus:outline-none focus:border-primary-red transition-all duration-200"
                         />
                       </div>
                       
@@ -963,7 +987,7 @@ export default function Admissions() {
                             value={formData.previousGrade}
                             onChange={handleInputChange}
                             placeholder="e.g., Grade 3, Form 2"
-                            className="w-full px-5 py-4 border border-gray-300 rounded-xl text-base focus:ring-2 focus:ring-primary-red focus:border-primary-red focus:border-transparent transition-all duration-200"
+                            className="w-full px-5 py-4 border border-gray-300 rounded-xl text-base focus:ring-0 focus:outline-none focus:border-primary-red transition-all duration-200"
                           />
                         </div>
                         
@@ -975,7 +999,7 @@ export default function Admissions() {
                             name="reasonForTransfer"
                             value={formData.reasonForTransfer}
                             onChange={handleInputChange}
-                            className="w-full px-5 py-4 border border-gray-300 rounded-xl text-base focus:ring-2 focus:ring-primary-red focus:border-primary-red focus:border-transparent transition-all duration-200"
+                            className="w-full px-5 py-4 border border-gray-300 rounded-xl text-base focus:ring-0 focus:outline-none focus:border-primary-red transition-all duration-200"
                           >
                             <option value="">Select Reason</option>
                             <option value="relocation">Family Relocation</option>
@@ -1020,7 +1044,7 @@ export default function Admissions() {
                           onChange={handleInputChange}
                           rows={3}
                           placeholder="Please describe any medical conditions, allergies, or special needs we should be aware of"
-                          className="w-full px-5 py-4 border border-gray-300 rounded-xl text-base focus:ring-2 focus:ring-primary-red focus:border-primary-red focus:border-transparent transition-all duration-200"
+                          className="w-full px-5 py-4 border border-gray-300 rounded-xl text-base focus:ring-0 focus:outline-none focus:border-primary-red transition-all duration-200"
                         />
                         <p className="text-xs text-gray-500 mt-1">
                           This information will be kept confidential and used only to provide appropriate care
@@ -1037,7 +1061,7 @@ export default function Admissions() {
                           onChange={handleInputChange}
                           rows={3}
                           placeholder="Does your child require any additional learning support or accommodations?"
-                          className="w-full px-5 py-4 border border-gray-300 rounded-xl text-base focus:ring-2 focus:ring-primary-red focus:border-primary-red focus:border-transparent transition-all duration-200"
+                          className="w-full px-5 py-4 border border-gray-300 rounded-xl text-base focus:ring-0 focus:outline-none focus:border-primary-red transition-all duration-200"
                         />
                       </div>
                       
@@ -1051,7 +1075,7 @@ export default function Admissions() {
                           onChange={handleInputChange}
                           rows={3}
                           placeholder="What sports, hobbies, or activities is your child interested in?"
-                          className="w-full px-5 py-4 border border-gray-300 rounded-xl text-base focus:ring-2 focus:ring-primary-red focus:border-primary-red focus:border-transparent transition-all duration-200"
+                          className="w-full px-5 py-4 border border-gray-300 rounded-xl text-base focus:ring-0 focus:outline-none focus:border-primary-red transition-all duration-200"
                         />
                       </div>
                     </div>
@@ -1065,7 +1089,11 @@ export default function Admissions() {
                     <Button
                       type="button"
                       variant="outline"
-                      onClick={prevStep}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        prevStep();
+                      }}
                       disabled={currentStep === 1}
                       className={`px-6 ${currentStep === 1 ? 'invisible' : ''}`}
                     >
@@ -1079,7 +1107,11 @@ export default function Admissions() {
                     {currentStep < totalSteps ? (
                       <Button
                         type="button"
-                        onClick={nextStep}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          nextStep();
+                        }}
                         className="px-6"
                       >
                         Next
@@ -1108,7 +1140,11 @@ export default function Admissions() {
                       <div className="space-y-3">
                         <Button
                           type="button"
-                          onClick={nextStep}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            nextStep();
+                          }}
                           className="w-full py-4 text-base font-semibold"
                           size="lg"
                         >
@@ -1118,7 +1154,11 @@ export default function Admissions() {
                           <Button
                             type="button"
                             variant="outline"
-                            onClick={prevStep}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              prevStep();
+                            }}
                             className="w-full py-3 text-base"
                           >
                             Back to Previous Step
@@ -1145,7 +1185,11 @@ export default function Admissions() {
                         <Button
                           type="button"
                           variant="outline"
-                          onClick={prevStep}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            prevStep();
+                          }}
                           className="w-full py-3 text-base"
                         >
                           Back to Previous Step
@@ -1231,6 +1275,101 @@ export default function Admissions() {
           </div>
         </div>
       </section>
+
+      {/* Success Modal */}
+      <AnimatePresence>
+        {showSuccessModal && submissionData && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setShowSuccessModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="bg-gradient-to-r from-green-500 to-emerald-600 p-6 text-white relative">
+                <button
+                  onClick={() => setShowSuccessModal(false)}
+                  className="absolute top-4 right-4 p-1 rounded-full hover:bg-white/20 transition-colors"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+                <div className="text-center">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, type: "spring", damping: 15 }}
+                    className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+                  >
+                    <CheckCircle className="h-8 w-8 text-white" />
+                  </motion.div>
+                  <h2 className="text-2xl font-bold mb-2">Application Submitted!</h2>
+                  <p className="text-green-100">Your application has been successfully submitted</p>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <div className="text-center space-y-4">
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <p className="text-sm text-gray-600 mb-1">Application Number</p>
+                    <p className="text-2xl font-bold text-charcoal-black font-mono tracking-wider">
+                      {submissionData.applicationNumber}
+                    </p>
+                  </div>
+                  
+                  <div className="text-left space-y-3">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-gray-700">
+                        We will contact you within <strong>3-5 business days</strong> to discuss the next steps.
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-gray-700">
+                        Please keep your application number for reference.
+                      </p>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <p className="text-gray-700">
+                        Check your email for a confirmation message.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 flex space-x-3">
+                  <Button
+                    onClick={() => {
+                      navigator.clipboard.writeText(submissionData.applicationNumber);
+                    }}
+                    variant="outline"
+                    className="flex-1"
+                  >
+                    Copy Number
+                  </Button>
+                  <Button
+                    onClick={() => setShowSuccessModal(false)}
+                    className="flex-1 bg-green-600 hover:bg-green-700"
+                  >
+                    Got It
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
