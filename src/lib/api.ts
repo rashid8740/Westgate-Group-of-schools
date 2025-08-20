@@ -267,6 +267,42 @@ export const messagesApi = {
   }
 };
 
+// Contact API
+export const contactApi = {
+  getAll: async (params?: URLSearchParams) => {
+    const query = params ? `?${params.toString()}` : '';
+    return await apiRequest<{
+      success: boolean;
+      data: {
+        contacts: any[];
+        pagination: any;
+      };
+    }>(`/contact/admin${query}`, {
+      requireAuth: true,
+    });
+  },
+
+  getStats: async () => {
+    return await apiRequest<{
+      success: boolean;
+      data: any;
+    }>('/contact/admin/stats', {
+      requireAuth: true,
+    });
+  },
+
+  updateStatus: async (id: string, status: string, notes?: string, assignedTo?: string) => {
+    return await apiRequest<{
+      success: boolean;
+      data: { contact: any };
+    }>(`/contact/admin/${id}`, {
+      method: 'PUT',
+      requireAuth: true,
+      body: JSON.stringify({ status, notes, assignedTo }),
+    });
+  }
+};
+
 // Gallery API
 export const galleryApi = {
   getAll: async (params?: URLSearchParams) => {

@@ -298,11 +298,7 @@ export default function AdminDashboard() {
       {/* Recent Applications & Messages */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Applications */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
+        <div>
           <Card padding="lg">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-lg font-semibold text-gray-900">Recent Applications</h3>
@@ -343,14 +339,10 @@ export default function AdminDashboard() {
               )}
             </div>
           </Card>
-        </motion.div>
+        </div>
 
         {/* Recent Messages */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
+        <div>
           <Card padding="lg">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-lg font-semibold text-gray-900">Recent Messages</h3>
@@ -403,15 +395,11 @@ export default function AdminDashboard() {
               )}
             </div>
           </Card>
-        </motion.div>
+        </div>
       </div>
 
       {/* Quick Actions */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-      >
+      <div>
         <Card padding="lg">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">Quick Actions</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -438,14 +426,10 @@ export default function AdminDashboard() {
             </a>
           </div>
         </Card>
-      </motion.div>
+      </div>
 
       {/* System Alerts */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.7 }}
-      >
+      <div>
         <Card padding="lg">
           <div className="flex items-center mb-4">
             <AlertCircle className="h-5 w-5 text-yellow-500 mr-2" />
@@ -512,7 +496,7 @@ export default function AdminDashboard() {
             )}
           </div>
         </Card>
-      </motion.div>
+      </div>
     </div>
   );
 }

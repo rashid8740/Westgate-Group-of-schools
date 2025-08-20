@@ -51,9 +51,8 @@ export const Card: React.FC<CardProps> = ({
       )}
       onClick={onClick}
       whileHover={hover ? { y: -2 } : undefined}
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
+      initial={{ opacity: 1, y: 0 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
     >
       {children}

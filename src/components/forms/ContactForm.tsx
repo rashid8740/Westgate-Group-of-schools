@@ -164,7 +164,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSuccess, className }
               {...register('name')}
               type="text"
               id="name"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:outline-none focus:border-primary-red transition-colors"
               placeholder="Enter your full name"
             />
             {errors.name && (
@@ -180,7 +180,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSuccess, className }
               {...register('email')}
               type="email"
               id="email"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:outline-none focus:border-primary-red transition-colors"
               placeholder="Enter your email address"
             />
             {errors.email && (
@@ -198,7 +198,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSuccess, className }
               {...register('phone')}
               type="tel"
               id="phone"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:outline-none focus:border-primary-red transition-colors"
               placeholder="+254 722 000 000"
             />
             {errors.phone && (
@@ -213,7 +213,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSuccess, className }
             <select
               {...register('inquiryType')}
               id="inquiryType"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:outline-none focus:border-primary-red transition-colors"
             >
               <option value="">Select inquiry type</option>
               {inquiryTypes.map((type) => (
@@ -238,7 +238,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSuccess, className }
               {...register('childAge')}
               type="text"
               id="childAge"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:outline-none focus:border-primary-red transition-colors"
               placeholder="e.g., 5 years old"
             />
             {errors.childAge && (
@@ -253,7 +253,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSuccess, className }
             <select
               {...register('preferredProgram')}
               id="preferredProgram"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent transition-colors"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:outline-none focus:border-primary-red transition-colors"
             >
               {programs.map((program) => (
                 <option key={program.value} value={program.value}>
@@ -274,7 +274,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSuccess, className }
           <select
             {...register('preferredContactTime')}
             id="preferredContactTime"
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent transition-colors"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:outline-none focus:border-primary-red transition-colors"
           >
             {contactTimes.map((time) => (
               <option key={time.value} value={time.value}>
@@ -295,7 +295,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ onSuccess, className }
             {...register('message')}
             id="message"
             rows={5}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent transition-colors resize-vertical"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-0 focus:outline-none focus:border-primary-red transition-colors resize-vertical"
             placeholder={
               watchedInquiryType === 'tour' 
                 ? "Please let us know your preferred dates and times for the school tour, number of visitors, and any specific areas you'd like to see."

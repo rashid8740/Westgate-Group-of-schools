@@ -281,19 +281,14 @@ export default function AdminApplications() {
           { label: 'Approved', value: applications.filter(app => app.status === 'approved').length, color: 'green' },
           { label: 'Under Review', value: applications.filter(app => app.status === 'review').length, color: 'purple' }
         ].map((stat, index) => (
-          <motion.div
-            key={stat.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-          >
+          <div key={stat.label}>
             <Card padding="lg">
               <div className="text-center">
                 <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
                 <div className="text-sm text-gray-600">{stat.label}</div>
               </div>
             </Card>
-          </motion.div>
+          </div>
         ))}
       </div>
 
@@ -326,11 +321,8 @@ export default function AdminApplications() {
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredApplications.length > 0 ? (
                 filteredApplications.map((application, index) => (
-                <motion.tr
+                <tr
                   key={application._id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
                   className="hover:bg-gray-50"
                 >
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -412,7 +404,7 @@ export default function AdminApplications() {
                       </button>
                     </div>
                   </td>
-                </motion.tr>
+                </tr>
                 ))
               ) : (
                 <tr>
@@ -431,22 +423,15 @@ export default function AdminApplications() {
       </Card>
 
       {/* Application Details Modal */}
-      <AnimatePresence>
-        {showDetailsModal && selectedApplication && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
-            onClick={() => setShowDetailsModal(false)}
+      {showDetailsModal && selectedApplication && (
+        <div
+          className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+          onClick={() => setShowDetailsModal(false)}
+        >
+          <div
+            className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
           >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
               <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-semibold">Application Details</h3>
@@ -594,10 +579,9 @@ export default function AdminApplications() {
                   </div>
                 )}
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         )}
-      </AnimatePresence>
       
       </>
       )} {/* End conditional wrapper */}

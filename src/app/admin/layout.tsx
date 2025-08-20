@@ -34,11 +34,11 @@ function AdminContent({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="h-screen bg-gray-50 overflow-hidden">
       {/* Sidebar */}
       <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-      } lg:translate-x-0 lg:static lg:inset-0 transition-transform duration-300 ease-in-out`}>
+      } lg:translate-x-0 transition-transform duration-300 ease-in-out`}>
         
         {/* Logo */}
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
@@ -106,10 +106,10 @@ function AdminContent({ children }: { children: React.ReactNode }) {
         />
       )}
 
-      {/* Main content */}
-      <div className="flex-1 lg:ml-0">
+      {/* Main content area */}
+      <div className="lg:pl-64 flex flex-col h-screen">
         {/* Top navigation */}
-        <header className="bg-white shadow-sm border-b border-gray-200">
+        <header className="bg-white shadow-sm border-b border-gray-200 flex-shrink-0">
           <div className="flex items-center justify-between h-16 px-6">
             <button
               onClick={() => setSidebarOpen(true)}
@@ -130,7 +130,7 @@ function AdminContent({ children }: { children: React.ReactNode }) {
         </header>
 
         {/* Page content */}
-        <main className="p-6">
+        <main className="flex-1 overflow-y-auto p-6">
           {children}
         </main>
       </div>
