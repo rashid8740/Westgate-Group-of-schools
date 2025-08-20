@@ -13,7 +13,6 @@ const navigation = [
   { name: 'Academics', href: '/academics' },
   { name: 'Admissions', href: '/admissions' },
   { name: 'Student Life', href: '/student-life' },
-  { name: 'News', href: '/news' },
   { name: 'Contact', href: '/contact' },
 ];
 
