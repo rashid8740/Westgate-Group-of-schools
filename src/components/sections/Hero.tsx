@@ -13,7 +13,7 @@ const heroSlides = [
     title: 'Nurturing Tomorrow\'s Leaders',
     subtitle: 'Excellence in Education Since Early 1990s',
     description: 'A premier Christian-based educational institution committed to academic excellence, character development, and holistic education through co-curricular activities.',
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+    image: '/images/hero/hero1.jpg',
     cta: 'Schedule School Tour',
     ctaLink: '/contact'
   },
@@ -22,7 +22,7 @@ const heroSlides = [
     title: 'KCPE Excellence',
     subtitle: 'Proven Academic Performance',
     description: 'Consistently ranked among top three schools in Kabete Sub-county with remarkable KCPE results and strong transition rates to secondary school.',
-    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+    image: '/images/hero/hero2.jpg',
     cta: 'View Results',
     ctaLink: '/academics'
   },
@@ -31,7 +31,7 @@ const heroSlides = [
     title: 'Holistic Development',
     subtitle: 'Beyond Academics',
     description: 'Comprehensive education including drama, music, swimming, French, and computer classes to develop well-rounded individuals.',
-    image: 'https://images.unsplash.com/photo-1627556704114-f0bf61edabda?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
+    image: '/images/hero/hero3.jpg',
     cta: 'Learn About Programs',
     ctaLink: '/academics'
   }
@@ -102,7 +102,11 @@ export const Hero: React.FC = () => {
                     transition={{ duration: 0.6, delay: 0.2 }}
                     className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm"
                   >
-                    <span className="text-white font-bold text-2xl">W</span>
+                    <img 
+                      src="/images/logo/header.png" 
+                      alt="Westgate Shield Primary School Logo" 
+                      className="w-12 h-12 object-contain"
+                    />
                   </motion.div>
                   
                   {/* Mobile Headlines */}

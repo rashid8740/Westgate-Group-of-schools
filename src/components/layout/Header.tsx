@@ -69,14 +69,18 @@ export const Header: React.FC = () => {
           <div className="flex justify-between items-center h-16 md:h-20">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2 md:space-x-3">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-primary-red rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg md:text-xl">W</span>
+              <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center">
+                <img 
+                  src="/images/logo/header.png" 
+                  alt="Westgate Shield Primary School Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <div className="font-display font-bold text-lg md:text-xl text-charcoal-black">
-                  Westgate
+                  Westgate Shield
                 </div>
-                <div className="text-xs md:text-sm text-gray-600">Group of Schools</div>
+                <div className="text-xs md:text-sm text-gray-600">Primary School</div>
               </div>
             </Link>
 

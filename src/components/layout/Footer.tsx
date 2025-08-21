@@ -71,8 +71,12 @@ export const Footer: React.FC = () => {
             {/* School Info - Condensed */}
             <div className="text-center">
               <div className="flex items-center justify-center space-x-3 mb-4">
-                <div className="w-10 h-10 bg-primary-red rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">W</span>
+                <div className="w-10 h-10 flex items-center justify-center">
+                  <img 
+                    src="/images/logo/footer.png" 
+                    alt="Westgate Shield Primary School Logo" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div>
                   <div className="font-display font-bold text-lg">Westgate Shield</div>
@@ -146,8 +150,12 @@ export const Footer: React.FC = () => {
             {/* School Info */}
             <div className="lg:col-span-1">
               <div className="flex items-center space-x-3 mb-6">
-                <div className="w-12 h-12 bg-primary-red rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">W</span>
+                <div className="w-12 h-12 flex items-center justify-center">
+                  <img 
+                    src="/images/logo/footer.png" 
+                    alt="Westgate Shield Primary School Logo" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div>
                   <div className="font-display font-bold text-xl">Westgate Shield</div>
