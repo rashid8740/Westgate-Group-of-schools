@@ -44,19 +44,19 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="bg-charcoal-black text-white">
-      {/* Newsletter Section */}
-      <div className="bg-gradient-to-r from-primary-red to-burgundy-deep py-12">
+      {/* Newsletter Section - Mobile Optimized */}
+      <div className="bg-gradient-to-r from-primary-red to-burgundy-deep py-6 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h3 className="text-2xl font-bold mb-4">Stay Connected</h3>
-            <p className="text-lg mb-8">Get the latest news and updates from Westgate Group of Schools</p>
-            <div className="max-w-md mx-auto flex gap-4">
+            <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-4">Stay Connected</h3>
+            <p className="text-sm md:text-lg mb-4 md:mb-8 text-white/90">Get updates from Westgate Schools</p>
+            <div className="max-w-md mx-auto flex flex-col sm:flex-row gap-3 sm:gap-4">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg text-charcoal-black focus:outline-none focus:ring-2 focus:ring-gold"
+                className="flex-1 px-3 py-2 md:px-4 md:py-3 rounded-lg text-charcoal-black focus:outline-none focus:ring-2 focus:ring-gold text-sm md:text-base"
               />
-              <Button variant="secondary" size="md">
+              <Button variant="secondary" size="sm" className="md:size-md whitespace-nowrap">
                 Subscribe
               </Button>
             </div>
@@ -64,10 +64,85 @@ export const Footer: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Footer */}
-      <div className="py-16">
+      {/* Main Footer - Mobile Optimized */}
+      <div className="py-8 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          
+          {/* Mobile: Compact Layout */}
+          <div className="block md:hidden space-y-8">
+            {/* School Info - Condensed */}
+            <div className="text-center">
+              <div className="flex items-center justify-center space-x-3 mb-4">
+                <div className="w-10 h-10 bg-primary-red rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">W</span>
+                </div>
+                <div>
+                  <div className="font-display font-bold text-lg">Westgate Schools</div>
+                </div>
+              </div>
+              <p className="text-gray-300 text-sm mb-4 max-w-xs mx-auto">
+                Excellence in education and character development.
+              </p>
+              <div className="flex justify-center space-x-3">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
+                  return (
+                    <motion.a
+                      key={social.name}
+                      href={social.href}
+                      className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-red transition-colors"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Icon className="h-4 w-4" />
+                    </motion.a>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Contact Info - Essential Only */}
+            <div className="text-center">
+              <h4 className="text-base font-semibold mb-4 text-gold">Contact Us</h4>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center justify-center space-x-2">
+                  <Phone className="h-4 w-4 text-gold" />
+                  <a href="tel:+254722826428" className="text-gray-300 hover:text-gold transition-colors">
+                    +254 722 826 428
+                  </a>
+                </div>
+                <div className="flex items-center justify-center space-x-2">
+                  <Mail className="h-4 w-4 text-gold" />
+                  <a href="mailto:josphinewothaya@gmail.com" className="text-gray-300 hover:text-gold transition-colors">
+                    josphinewothaya@gmail.com
+                  </a>
+                </div>
+                <div className="flex items-center justify-center space-x-2">
+                  <MapPin className="h-4 w-4 text-gold" />
+                  <span className="text-gray-300">Muthiga, Kikuyu</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Links - Horizontal */}
+            <div className="text-center">
+              <h4 className="text-base font-semibold mb-4 text-gold">Quick Links</h4>
+              <div className="grid grid-cols-2 gap-2 text-sm max-w-xs mx-auto">
+                {quickLinks.slice(0, 4).map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="text-gray-300 hover:text-gold transition-colors py-1"
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop: Full Layout */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             
             {/* School Info */}
             <div className="lg:col-span-1">
@@ -147,9 +222,10 @@ export const Footer: React.FC = () => {
                   <div>
                     <div className="text-white font-medium">Address</div>
                     <div className="text-gray-300">
-                      Westgate Road, Nairobi<br />
-                      P.O. Box 12345-00100<br />
-                      Nairobi, Kenya
+                      Muthiga, Kikuyu<br />
+                      Off Nairobi-Nakuru Highway<br />
+                      Opposite Tulia Gardens<br />
+                      P.O. Box 849, Kikuyu 00902
                     </div>
                   </div>
                 </div>
@@ -158,8 +234,8 @@ export const Footer: React.FC = () => {
                   <Phone className="h-5 w-5 text-gold flex-shrink-0" />
                   <div>
                     <div className="text-white font-medium">Phone</div>
-                    <a href="tel:+254722000000" className="text-gray-300 hover:text-gold transition-colors">
-                      +254 722 000 000
+                    <a href="tel:+254722826428" className="text-gray-300 hover:text-gold transition-colors">
+                      +254 722 826 428
                     </a>
                   </div>
                 </div>
@@ -168,8 +244,8 @@ export const Footer: React.FC = () => {
                   <Mail className="h-5 w-5 text-gold flex-shrink-0" />
                   <div>
                     <div className="text-white font-medium">Email</div>
-                    <a href="mailto:info@westgateschool.ac.ke" className="text-gray-300 hover:text-gold transition-colors">
-                      info@westgateschool.ac.ke
+                    <a href="mailto:josphinewothaya@gmail.com" className="text-gray-300 hover:text-gold transition-colors">
+                      josphinewothaya@gmail.com
                     </a>
                   </div>
                 </div>
@@ -179,8 +255,9 @@ export const Footer: React.FC = () => {
                   <div>
                     <div className="text-white font-medium">Office Hours</div>
                     <div className="text-gray-300">
-                      Mon - Fri: 7:00 AM - 5:00 PM<br />
-                      Sat: 8:00 AM - 1:00 PM
+                      Mon - Fri: 8:00 AM - 5:00 PM<br />
+                      Sat: 8:00 AM - 1:00 PM<br />
+                      Sun: 9:00 AM - 1:00 PM
                     </div>
                   </div>
                 </div>
@@ -190,19 +267,19 @@ export const Footer: React.FC = () => {
         </div>
       </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-gray-800 py-6">
+      {/* Bottom Bar - Mobile Optimized */}
+      <div className="border-t border-gray-800 py-4 md:py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-gray-400 text-sm">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
+            <div className="text-gray-400 text-xs md:text-sm text-center md:text-left">
               © {currentYear} Westgate Group of Schools. All rights reserved.
             </div>
-            <div className="flex space-x-6 text-sm">
+            <div className="flex flex-wrap justify-center space-x-4 md:space-x-6 text-xs md:text-sm">
               <Link href="/privacy" className="text-gray-400 hover:text-gold transition-colors">
-                Privacy Policy
+                Privacy
               </Link>
               <Link href="/terms" className="text-gray-400 hover:text-gold transition-colors">
-                Terms of Service
+                Terms
               </Link>
               <Link href="/sitemap" className="text-gray-400 hover:text-gold transition-colors">
                 Sitemap

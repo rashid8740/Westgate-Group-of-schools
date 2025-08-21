@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Open_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import ConditionalLayout from "@/components/layout/ConditionalLayout";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -51,9 +50,7 @@ export default function RootLayout({
         className={`${inter.variable} ${openSans.variable} ${playfair.variable} font-body antialiased`}
         suppressHydrationWarning={true}
       >
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <ConditionalLayout>{children}</ConditionalLayout>
       </body>
     </html>
   );

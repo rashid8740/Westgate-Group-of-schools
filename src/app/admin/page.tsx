@@ -436,11 +436,11 @@ export default function AdminDashboard() {
             <h3 className="text-lg font-semibold text-gray-900">System Status</h3>
           </div>
           <div className="space-y-3">
-            {stats?.applications.pending > 0 && (
+            {(stats?.applications?.pending || 0) > 0 && (
               <div className="flex items-center p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                 <div className="flex-1">
                   <p className="text-sm text-yellow-800">
-                    {stats.applications.pending} application{stats.applications.pending > 1 ? 's' : ''} require review
+                    {stats?.applications?.pending || 0} application{(stats?.applications?.pending || 0) > 1 ? 's' : ''} require review
                   </p>
                 </div>
                 <a 
@@ -452,11 +452,11 @@ export default function AdminDashboard() {
               </div>
             )}
             
-            {stats?.messages.unread > 0 && (
+            {(stats?.messages?.unread || 0) > 0 && (
               <div className="flex items-center p-3 bg-red-50 border border-red-200 rounded-lg">
                 <div className="flex-1">
                   <p className="text-sm text-red-800">
-                    {stats.messages.unread} unread message{stats.messages.unread > 1 ? 's' : ''} waiting for response
+                    {stats?.messages?.unread || 0} unread message{(stats?.messages?.unread || 0) > 1 ? 's' : ''} waiting for response
                   </p>
                 </div>
                 <a 
@@ -468,11 +468,11 @@ export default function AdminDashboard() {
               </div>
             )}
 
-            {stats?.messages.highPriority > 0 && (
+            {(stats?.messages?.highPriority || 0) > 0 && (
               <div className="flex items-center p-3 bg-orange-50 border border-orange-200 rounded-lg">
                 <div className="flex-1">
                   <p className="text-sm text-orange-800">
-                    {stats.messages.highPriority} high priority message{stats.messages.highPriority > 1 ? 's' : ''} need attention
+                    {stats?.messages?.highPriority || 0} high priority message{(stats?.messages?.highPriority || 0) > 1 ? 's' : ''} need attention
                   </p>
                 </div>
                 <a 
@@ -485,7 +485,7 @@ export default function AdminDashboard() {
             )}
 
             {/* Show success message if no alerts */}
-            {(!stats?.applications.pending && !stats?.messages.unread && !stats?.messages.highPriority) && (
+            {(!(stats?.applications?.pending || 0) && !(stats?.messages?.unread || 0) && !(stats?.messages?.highPriority || 0)) && (
               <div className="flex items-center p-3 bg-green-50 border border-green-200 rounded-lg">
                 <div className="flex-1">
                   <p className="text-sm text-green-800">

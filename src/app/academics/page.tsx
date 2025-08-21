@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { 
   BookOpen, 
@@ -23,80 +24,80 @@ import { Button } from '@/components/ui/Button';
 
 const curricula = [
   {
-    title: 'Cambridge Primary',
-    ageRange: '5-11 years',
-    description: 'Foundation years that build essential skills in core subjects while nurturing creativity and curiosity.',
-    subjects: ['English', 'Mathematics', 'Science', 'ICT', 'Art & Design', 'Physical Education'],
+    title: 'Playgroup & Nursery',
+    ageRange: '2-4 years',
+    description: 'Early childhood development focusing on foundational skills, creativity, and social interaction.',
+    subjects: ['Basic Literacy', 'Numeracy', 'Art & Craft', 'Music & Movement', 'Physical Development', 'Social Skills'],
     highlights: [
-      'Child-centered learning approach',
-      'Development of critical thinking',
-      'Strong foundation in literacy and numeracy',
-      'Introduction to scientific concepts'
+      'Play-based learning approach',
+      'Development of motor skills',
+      'Introduction to basic concepts',
+      'Safe and nurturing environment'
     ],
-    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/academics/cambridge-primary.jpg'
+    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/academics/playgroup-nursery.jpg'
   },
   {
-    title: 'Cambridge IGCSE',
-    ageRange: '14-16 years',
-    description: 'Internationally recognized qualification that prepares students for further study and develops practical skills.',
-    subjects: ['Core Mathematics', 'English Language', 'Physics', 'Chemistry', 'Biology', 'History', 'Geography', 'Business Studies'],
+    title: 'Pre-Primary',
+    ageRange: '4-6 years',
+    description: 'Preparation for primary education with emphasis on reading, writing, and mathematical foundations.',
+    subjects: ['Reading & Writing', 'Mathematics', 'Environmental Activities', 'Creative Arts', 'Physical Education', 'Religious Education'],
     highlights: [
-      'Internationally recognized qualification',
-      'Develops independent learning skills',
-      'Flexible subject combinations',
-      'Excellent preparation for A-Levels'
+      'Structured learning environment',
+      'Strong foundation for primary school',
+      'Christian values integration',
+      'Holistic development focus'
     ],
-    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/academics/cambridge-igcse.jpg'
+    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/academics/pre-primary.jpg'
   },
   {
-    title: 'Cambridge A-Levels',
-    ageRange: '16-18 years',
-    description: 'Advanced level qualification that provides excellent preparation for university and develops deep subject knowledge.',
-    subjects: ['Mathematics', 'Further Mathematics', 'Physics', 'Chemistry', 'Biology', 'Economics', 'Business', 'Psychology'],
+    title: 'Primary School (CBC)',
+    ageRange: '6-12 years',
+    description: 'Competency Based Curriculum from Grade 1 to 6, preparing students for KCPE excellence.',
+    subjects: ['English', 'Kiswahili', 'Mathematics', 'Science & Technology', 'Social Studies', 'Creative Arts', 'Physical Education', 'Religious Education'],
     highlights: [
-      'Gold standard for university admission',
-      'Develops analytical and critical thinking',
-      'In-depth subject specialization',
-      'Recognized by universities worldwide'
+      'Competency Based Curriculum (CBC)',
+      'Strong KCPE performance',
+      'Christian values and patriotism',
+      'Co-curricular activities integration'
     ],
-    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/academics/cambridge-alevels.jpg'
+    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/academics/primary-cbc.jpg'
   }
 ];
 
 const departments = [
   {
-    name: 'Sciences',
-    icon: Microscope,
-    subjects: ['Physics', 'Chemistry', 'Biology', 'Computer Science'],
-    description: 'State-of-the-art laboratories and expert faculty foster scientific inquiry and innovation.',
-    facilities: ['Modern physics lab', 'Chemistry laboratory', 'Biology lab with specimens', 'Computer lab with latest software']
+    name: 'Languages',
+    icon: Languages,
+    subjects: ['English', 'Kiswahili', 'French'],
+    description: 'Building strong communication skills and cultural awareness through comprehensive language education.',
+    facilities: ['Language laboratory', 'Library with extensive collection', 'Drama studio', 'Debate society']
   },
   {
     name: 'Mathematics',
     icon: Calculator,
-    subjects: ['Core Mathematics', 'Further Mathematics', 'Statistics'],
+    subjects: ['Mathematics', 'Numeracy', 'Problem Solving'],
     description: 'Developing logical thinking and problem-solving skills through comprehensive mathematics education.',
-    facilities: ['Interactive whiteboards', 'Mathematical software', 'Graphing calculators', 'Problem-solving workshops']
+    facilities: ['Interactive whiteboards', 'Mathematical software', 'Problem-solving workshops', 'Individual tutoring']
   },
   {
-    name: 'Languages & Literature',
-    icon: Languages,
-    subjects: ['English Language', 'English Literature', 'Kiswahili', 'French'],
-    description: 'Building communication skills and cultural awareness through language and literature study.',
-    facilities: ['Language laboratory', 'Library with extensive collection', 'Drama studio', 'Debate society']
+    name: 'Sciences',
+    icon: Microscope,
+    subjects: ['Science & Technology', 'Environmental Activities', 'Basic Sciences'],
+    description: 'Fostering scientific inquiry and innovation through hands-on learning experiences.',
+    facilities: ['Science laboratory', 'Computer lab', 'Environmental garden', 'Science equipment']
   },
   {
-    name: 'Humanities',
+    name: 'Social Studies',
     icon: Globe,
-    subjects: ['History', 'Geography', 'Business Studies', 'Economics'],
-    description: 'Understanding human society, culture, and global perspectives through comprehensive humanities education.',
-    facilities: ['Resource center', 'Map room', 'Mock trading floor', 'Historical artifacts collection']
+    subjects: ['Social Studies', 'Religious Education', 'Citizenship'],
+    description: 'Understanding society, culture, and Christian values through comprehensive social education.',
+    facilities: ['Resource center', 'Religious education room', 'Cultural materials', 'Community service projects']
   },
   {
     name: 'Creative Arts',
     icon: Palette,
-    subjects: ['Art & Design', 'Music', 'Drama', 'Creative Writing'],
-    description: 'Nurturing creativity and artistic expression through diverse creative arts programs.',
+    subjects: ['Art & Craft', 'Music', 'Drama', 'Physical Education'],
+    description: 'Nurturing creativity and artistic expression through diverse co-curricular activities.',
     facilities: ['Art studios', 'Music rooms', 'Drama theater', 'Digital design lab']
   },
   {
@@ -478,9 +479,11 @@ export default function Academics() {
               to see our facilities and meet our expert faculty.
             </p>
             <div className="flex flex-col gap-4 max-w-md mx-auto md:flex-row md:max-w-none md:justify-center">
-              <Button size="lg" variant="secondary" className="font-semibold">
-                Schedule Academic Tour
-              </Button>
+              <Link href="/contact">
+                <Button size="lg" variant="secondary" className="font-semibold">
+                  Schedule Academic Tour
+                </Button>
+              </Link>
               <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-charcoal-black font-semibold">
                 Download Curriculum Guide
               </Button>

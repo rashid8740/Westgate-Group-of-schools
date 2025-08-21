@@ -39,19 +39,19 @@ export const Header: React.FC = () => {
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2">
               <Phone className="h-4 w-4" />
-              <a href="tel:+254722000000" className="hover:text-gold transition-colors">
-                +254 722 000 000
+              <a href="tel:+254722826428" className="hover:text-gold transition-colors">
+                +254 722 826 428
               </a>
             </div>
             <div className="flex items-center space-x-2">
               <Mail className="h-4 w-4" />
-              <a href="mailto:info@westgateschool.ac.ke" className="hover:text-gold transition-colors">
-                info@westgateschool.ac.ke
+              <a href="mailto:josphinewothaya@gmail.com" className="hover:text-gold transition-colors">
+                josphinewothaya@gmail.com
               </a>
             </div>
           </div>
           <div className="text-sm">
-            Excellence in Education Since 1995
+            Excellence in Education Since Early 1990s
           </div>
         </div>
       </div>
@@ -96,12 +96,16 @@ export const Header: React.FC = () => {
 
             {/* CTA Buttons */}
             <div className="hidden lg:flex items-center space-x-4">
-              <Button variant="outline" size="sm">
-                Book Tour
-              </Button>
-              <Button size="sm">
-                Apply Now
-              </Button>
+              <Link href="/contact">
+                <Button variant="outline" size="sm">
+                  Book Tour
+                </Button>
+              </Link>
+              <Link href="/admissions">
+                <Button size="sm">
+                  Apply Now
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -136,12 +140,16 @@ export const Header: React.FC = () => {
                   </Link>
                 ))}
                 <div className="pt-4 space-y-3">
-                  <Button variant="outline" size="md" className="w-full">
-                    Book Tour
-                  </Button>
-                  <Button size="md" className="w-full">
-                    Apply Now
-                  </Button>
+                  <Link href="/contact">
+                    <Button variant="outline" size="md" className="w-full">
+                      Book Tour
+                    </Button>
+                  </Link>
+                  <Link href="/admissions">
+                    <Button size="md" className="w-full">
+                      Apply Now
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>

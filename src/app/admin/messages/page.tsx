@@ -311,54 +311,54 @@ export default function AdminMessages() {
       {/* Content - Only show when not loading and no error */}
       {!loading && !error && (
         <>
-          {/* Filters */}
-          <Card padding="lg">
-            <div className="flex flex-col md:flex-row gap-4">
-              {/* Search */}
-              <div className="flex-1">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                  <input
-                    type="text"
+      {/* Filters */}
+      <Card padding="lg">
+        <div className="flex flex-col md:flex-row gap-4">
+          {/* Search */}
+          <div className="flex-1">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <input
+                type="text"
                     placeholder="Search contacts..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent"
-                  />
-                </div>
-              </div>
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent"
+              />
+            </div>
+          </div>
 
-              {/* Status Filter */}
-              <div className="flex items-center space-x-2">
-                <Filter className="h-4 w-4 text-gray-400" />
-                <select
-                  value={selectedStatus}
-                  onChange={(e) => setSelectedStatus(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent"
-                >
-                  {statusOptions.map(status => (
-                    <option key={status} value={status}>
-                      {status.charAt(0).toUpperCase() + status.slice(1)}
-                    </option>
-                  ))}
-                </select>
-              </div>
+          {/* Status Filter */}
+          <div className="flex items-center space-x-2">
+            <Filter className="h-4 w-4 text-gray-400" />
+            <select
+              value={selectedStatus}
+              onChange={(e) => setSelectedStatus(e.target.value)}
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent"
+            >
+              {statusOptions.map(status => (
+                <option key={status} value={status}>
+                  {status.charAt(0).toUpperCase() + status.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
 
               {/* Inquiry Type Filter */}
-              <div>
-                <select
+          <div>
+            <select
                   value={selectedInquiryType}
                   onChange={(e) => setSelectedInquiryType(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent"
-                >
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent"
+            >
                   <option value="all">All Types</option>
                   <option value="general">General</option>
                   <option value="tour">School Tour</option>
                   <option value="admissions">Admissions</option>
                   <option value="academic">Academic</option>
                   <option value="facilities">Facilities</option>
-                </select>
-              </div>
+            </select>
+          </div>
 
               {/* Items per page */}
               <div>
@@ -372,27 +372,27 @@ export default function AdminMessages() {
                   <option value={50}>50 per page</option>
                 </select>
               </div>
-            </div>
-          </Card>
+        </div>
+      </Card>
 
-          {/* Statistics */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            {[
+      {/* Statistics */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        {[
               { label: 'Total Messages', value: filteredContacts.length, color: 'blue' },
               { label: 'New Messages', value: filteredContacts.filter(contact => contact.status === 'new').length, color: 'red' },
               { label: 'Follow-up', value: filteredContacts.filter(contact => contact.status === 'follow-up').length, color: 'yellow' },
               { label: 'Resolved', value: filteredContacts.filter(contact => contact.status === 'resolved').length, color: 'green' }
-            ].map((stat, index) => (
+        ].map((stat, index) => (
               <div key={stat.label}>
-                <Card padding="lg">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-                    <div className="text-sm text-gray-600">{stat.label}</div>
-                  </div>
-                </Card>
+            <Card padding="lg">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+                <div className="text-sm text-gray-600">{stat.label}</div>
               </div>
-            ))}
-          </div>
+            </Card>
+              </div>
+        ))}
+      </div>
 
           {/* Messages Table */}
           <Card padding="none">
@@ -428,9 +428,9 @@ export default function AdminMessages() {
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10">
                             <div className="h-10 w-10 rounded-full bg-primary-red/10 flex items-center justify-center">
-                              <User className="h-5 w-5 text-primary-red" />
-                            </div>
-                          </div>
+                          <User className="h-5 w-5 text-primary-red" />
+                        </div>
+                      </div>
                           <div className="ml-4">
                             <div className="text-sm font-medium text-gray-900">
                               {contact.name}
@@ -441,31 +441,31 @@ export default function AdminMessages() {
                             <div className="text-xs text-gray-400 flex items-center">
                               <Phone className="h-3 w-3 mr-1" />
                               {contact.phone}
-                            </div>
-                          </div>
-                        </div>
+                      </div>
+                    </div>
+                    </div>
                       </td>
                       <td className="px-6 py-4">
                         <div className="text-sm text-gray-900 font-medium">
                           {formatInquiryType(contact.inquiryType)}
-                        </div>
+                  </div>
                         <div className="text-sm text-gray-500 max-w-xs truncate">
                           {contact.message}
-                        </div>
+                  </div>
                         {contact.childAge && (
                           <div className="text-xs text-gray-400 mt-1">
                             Child age: {contact.childAge}
-                          </div>
+                      </div>
                         )}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         {getStatusBadge(contact.status)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <div className="flex items-center">
+                      <div className="flex items-center">
                           <Calendar className="h-4 w-4 mr-1" />
                           {formatDate(contact.createdAt)}
-                        </div>
+                      </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <div className="flex space-x-2">
@@ -476,13 +476,13 @@ export default function AdminMessages() {
                           >
                             <Eye className="h-4 w-4" />
                           </button>
-                          <button
+                      <button
                             onClick={() => handleReply(contact)}
                             className="text-blue-600 hover:text-blue-900"
                             title="Add Notes"
-                          >
-                            <Reply className="h-4 w-4" />
-                          </button>
+                      >
+                        <Reply className="h-4 w-4" />
+                      </button>
                           {contact.status === 'new' && (
                             <>
                               <button
@@ -528,7 +528,7 @@ export default function AdminMessages() {
                                 title="Reject"
                               >
                                 <UserX className="h-4 w-4" />
-                              </button>
+                      </button>
                               <button
                                 onClick={() => handleStatusUpdate(contact._id, 'resolved')}
                                 disabled={updating === contact._id}
@@ -540,17 +540,17 @@ export default function AdminMessages() {
                                 ) : (
                                   <CheckCircle className="h-4 w-4" />
                                 )}
-                              </button>
+                      </button>
                             </>
                           )}
                           <button className="text-gray-400 hover:text-gray-600">
                             <MoreHorizontal className="h-4 w-4" />
-                          </button>
-                        </div>
+                      </button>
+                    </div>
                       </td>
                     </tr>
-                    ))
-                  ) : (
+          ))
+        ) : (
                     <tr>
                       <td colSpan={5} className="px-6 py-12 text-center">
                         <div className="text-gray-500">
@@ -558,9 +558,9 @@ export default function AdminMessages() {
                           <p className="text-lg font-medium mb-2">No Messages Found</p>
                           <p>
                             {searchTerm || selectedStatus !== 'all' || selectedInquiryType !== 'all'
-                              ? 'No messages match your current filters.'
-                              : 'No messages have been received yet.'}
-                          </p>
+                  ? 'No messages match your current filters.'
+                  : 'No messages have been received yet.'}
+              </p>
                         </div>
                       </td>
                     </tr>
@@ -578,8 +578,8 @@ export default function AdminMessages() {
                   <span>
                     Showing {((pagination.currentPage - 1) * pagination.itemsPerPage) + 1} to {Math.min(pagination.currentPage * pagination.itemsPerPage, pagination.totalItems)} of {pagination.totalItems} results
                   </span>
-                </div>
-                
+      </div>
+
                 <div className="flex items-center space-x-2">
                   <Button
                     variant="outline"
@@ -628,43 +628,43 @@ export default function AdminMessages() {
           {/* Contact Details Modal */}
           {showDetailsModal && selectedContact && (
             <div
-              className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
-              onClick={() => setShowDetailsModal(false)}
-            >
+            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+            onClick={() => setShowDetailsModal(false)}
+          >
               <div
-                className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-                onClick={(e) => e.stopPropagation()}
-              >
-                  <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
-                    <div className="flex items-center justify-between">
+              className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4">
+                <div className="flex items-center justify-between">
                       <h3 className="text-lg font-semibold">Contact Details</h3>
-                      <button
-                        onClick={() => setShowDetailsModal(false)}
-                        className="p-1 hover:bg-gray-100 rounded"
-                      >
-                        <X className="h-5 w-5" />
-                      </button>
-                    </div>
-                  </div>
+                  <button
+                    onClick={() => setShowDetailsModal(false)}
+                    className="p-1 hover:bg-gray-100 rounded"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+              </div>
 
-                  <div className="p-6 space-y-6">
+              <div className="p-6 space-y-6">
                     {/* Contact Information */}
-                    <div>
+                <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-4">Contact Information</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700">Name</label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">Name</label>
                           <p className="mt-1 text-sm text-gray-900">{selectedContact.name}</p>
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700">Email</label>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">Email</label>
                           <p className="mt-1 text-sm text-gray-900">{selectedContact.email}</p>
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700">Phone</label>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">Phone</label>
                           <p className="mt-1 text-sm text-gray-900">{selectedContact.phone}</p>
-                        </div>
-                        <div>
+                    </div>
+                    <div>
                           <label className="block text-sm font-medium text-gray-700">Inquiry Type</label>
                           <p className="mt-1 text-sm text-gray-900">{formatInquiryType(selectedContact.inquiryType)}</p>
                         </div>
@@ -683,9 +683,9 @@ export default function AdminMessages() {
                         <div>
                           <label className="block text-sm font-medium text-gray-700">Preferred Contact Time</label>
                           <p className="mt-1 text-sm text-gray-900">{selectedContact.preferredContactTime}</p>
-                        </div>
-                      </div>
                     </div>
+                  </div>
+                </div>
 
                     {/* Message */}
                     <div>
@@ -699,63 +699,63 @@ export default function AdminMessages() {
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-4">Status & Notes</h4>
                       <div className="space-y-4">
-                        <div>
+                      <div>
                           <label className="block text-sm font-medium text-gray-700">Current Status</label>
                           <div className="mt-1">{getStatusBadge(selectedContact.status)}</div>
-                        </div>
+                      </div>
                         {selectedContact.notes && (
-                          <div>
+                      <div>
                             <label className="block text-sm font-medium text-gray-700">Notes</label>
                             <div className="mt-1 p-3 bg-blue-50 rounded-lg">
                               <p className="text-sm text-blue-900 whitespace-pre-wrap">{selectedContact.notes}</p>
                             </div>
-                          </div>
-                        )}
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700">Received</label>
-                          <p className="mt-1 text-sm text-gray-900">{formatDate(selectedContact.createdAt)}</p>
-                        </div>
                       </div>
+                        )}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700">Received</label>
+                          <p className="mt-1 text-sm text-gray-900">{formatDate(selectedContact.createdAt)}</p>
                     </div>
+                  </div>
+                </div>
 
-                    {/* Actions */}
+                {/* Actions */}
                     <div className="flex space-x-3 pt-6 border-t border-gray-200">
-                      <Button
-                        onClick={() => {
-                          setShowDetailsModal(false);
+                    <Button
+                      onClick={() => {
+                        setShowDetailsModal(false);
                           handleReply(selectedContact);
-                        }}
+                      }}
                         className="flex-1"
-                      >
-                        <Reply className="h-4 w-4 mr-2" />
+                    >
+                      <Reply className="h-4 w-4 mr-2" />
                         Add Notes
-                      </Button>
+                    </Button>
                       
                       {(selectedContact.status === 'contacted' || selectedContact.status === 'follow-up') && (
                         <>
-                          <Button
-                            onClick={() => {
+                    <Button
+                      onClick={() => {
                               handleStatusUpdate(selectedContact._id, 'accepted');
-                              setShowDetailsModal(false);
-                            }}
+                        setShowDetailsModal(false);
+                      }}
                             disabled={updating === selectedContact._id}
                             className="bg-green-600 hover:bg-green-700"
-                          >
+                    >
                             <UserCheck className="h-4 w-4 mr-2" />
                             Accept
-                          </Button>
-                          <Button
-                            onClick={() => {
+                    </Button>
+                    <Button
+                      onClick={() => {
                               handleStatusUpdate(selectedContact._id, 'rejected');
-                              setShowDetailsModal(false);
-                            }}
+                        setShowDetailsModal(false);
+                      }}
                             disabled={updating === selectedContact._id}
-                            variant="outline"
+                      variant="outline"
                             className="border-red-300 text-red-700 hover:bg-red-50"
-                          >
+                    >
                             <UserX className="h-4 w-4 mr-2" />
                             Reject
-                          </Button>
+                    </Button>
                         </>
                       )}
                       
@@ -776,74 +776,74 @@ export default function AdminMessages() {
                   </div>
                 </div>
               </div>
-            )}
+        )}
 
-          {/* Reply Modal */}
+      {/* Reply Modal */}
           {showReplyModal && selectedContact && (
             <div
-              className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
-              onClick={() => setShowReplyModal(false)}
-            >
+            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+            onClick={() => setShowReplyModal(false)}
+          >
               <div
-                className="bg-white rounded-lg max-w-2xl w-full"
-                onClick={(e) => e.stopPropagation()}
-              >
-                  <div className="border-b border-gray-200 px-6 py-4">
-                    <div className="flex items-center justify-between">
+              className="bg-white rounded-lg max-w-2xl w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="border-b border-gray-200 px-6 py-4">
+                <div className="flex items-center justify-between">
                       <h3 className="text-lg font-semibold">Add Notes for {selectedContact.name}</h3>
-                      <button
-                        onClick={() => setShowReplyModal(false)}
-                        className="p-1 hover:bg-gray-100 rounded"
-                      >
-                        <X className="h-5 w-5" />
-                      </button>
-                    </div>
-                  </div>
+                  <button
+                    onClick={() => setShowReplyModal(false)}
+                    className="p-1 hover:bg-gray-100 rounded"
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+              </div>
 
-                  <div className="p-6 space-y-4">
-                    {/* Original Message */}
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-medium text-gray-900 mb-2">Original Message:</h4>
-                      <p className="text-sm text-gray-600 mb-2">
+              <div className="p-6 space-y-4">
+                {/* Original Message */}
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <h4 className="font-medium text-gray-900 mb-2">Original Message:</h4>
+                  <p className="text-sm text-gray-600 mb-2">
                         <strong>Type:</strong> {formatInquiryType(selectedContact.inquiryType)}
-                      </p>
-                      <p className="text-sm text-gray-600 whitespace-pre-wrap">
+                  </p>
+                  <p className="text-sm text-gray-600 whitespace-pre-wrap">
                         {selectedContact.message}
-                      </p>
-                    </div>
+                  </p>
+                </div>
 
                     {/* Notes */}
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                         Add Notes
-                      </label>
-                      <textarea
-                        value={replyText}
-                        onChange={(e) => setReplyText(e.target.value)}
+                  </label>
+                  <textarea
+                    value={replyText}
+                    onChange={(e) => setReplyText(e.target.value)}
                         rows={6}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-red focus:border-transparent"
                         placeholder="Add notes about this contact inquiry..."
-                      />
-                    </div>
+                  />
+                </div>
 
-                    {/* Actions */}
-                    <div className="flex space-x-3 pt-4">
-                      <Button
-                        onClick={handleSendReply}
-                        disabled={!replyText.trim() || responding}
-                      >
-                        {responding ? (
-                          <div className="flex items-center">
-                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                {/* Actions */}
+                <div className="flex space-x-3 pt-4">
+                  <Button
+                    onClick={handleSendReply}
+                    disabled={!replyText.trim() || responding}
+                  >
+                    {responding ? (
+                      <div className="flex items-center">
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
                             Saving...
-                          </div>
-                        ) : (
-                          <>
+                      </div>
+                    ) : (
+                      <>
                             <Reply className="h-4 w-4 mr-2" />
                             Save Notes
-                          </>
-                        )}
-                      </Button>
+                      </>
+                    )}
+                  </Button>
                       <Button
                         variant="outline"
                         onClick={() => setShowReplyModal(false)}
@@ -854,8 +854,8 @@ export default function AdminMessages() {
                   </div>
                 </div>
               </div>
-            )}
-        </>
+        )}
+      </>
       )}
     </div>
   );

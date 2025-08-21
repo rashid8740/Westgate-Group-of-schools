@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, FileText, Users, CheckCircle, Clock, Star, Phone, Mail, MapPin, Upload, X } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
@@ -42,27 +43,6 @@ const requirements = [
   'Vaccination records',
   'Transfer letter (if applicable)',
   'Application fee payment'
-];
-
-const programs = [
-  {
-    name: 'Early Years Program',
-    ageRange: '2-5 years',
-    description: 'Nursery and Pre-Primary foundation',
-    fee: 'KES 45,000 per term'
-  },
-  {
-    name: 'Primary School',
-    ageRange: '6-11 years',
-    description: 'Cambridge Primary curriculum',
-    fee: 'KES 65,000 per term'
-  },
-  {
-    name: 'Secondary School',
-    ageRange: '12-18 years',
-    description: 'Cambridge IGCSE & A-Levels',
-    fee: 'KES 85,000 per term'
-  }
 ];
 
 export default function Admissions() {
@@ -319,7 +299,7 @@ export default function Admissions() {
         setCurrentStep(1);
         setFormErrors({});
       } else {
-        throw new Error(response.message || 'Failed to submit application');
+        throw new Error('Failed to submit application');
       }
     } catch (error) {
       console.error('Application submission error:', error);
@@ -332,161 +312,164 @@ export default function Admissions() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      {/* Admission Process Hero */}
+      <section className="relative min-h-screen bg-gradient-to-br from-primary-red via-burgundy-deep to-charcoal-black overflow-hidden pt-20 pb-16 md:pt-24 md:pb-20">
+        {/* Background Pattern */}
         <div className="absolute inset-0">
-          <img 
-            src="https://res.cloudinary.com/westgate-school/image/upload/v1/admissions/hero-admissions.jpg" 
-            alt="Admissions"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
+          <div className="absolute top-20 left-10 w-32 h-32 bg-white/5 rounded-full blur-xl"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-gold/10 rounded-full blur-xl"></div>
         </div>
-        
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 h-full flex flex-col">
+          {/* Hero Header */}
           <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-gold font-medium text-sm tracking-wide uppercase mb-4 md:text-lg"
+            className="text-center mb-12 md:mb-16 pt-8 md:pt-12"
           >
-            Admissions
-          </motion.div>
-          
-          <motion.h1
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-white font-display font-bold text-3xl leading-tight mb-6 md:text-6xl"
-          >
-            Begin Your Child's
-            <span className="block text-gold">Educational Journey</span>
-          </motion.h1>
-          
-          <motion.p
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-white/90 text-lg leading-relaxed max-w-2xl mx-auto mb-8 md:text-xl"
-          >
-            Join a community committed to excellence, where every student is valued, 
-            challenged, and prepared for success in an ever-changing world.
-          </motion.p>
-          
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col gap-4 max-w-md mx-auto md:flex-row md:max-w-none md:justify-center"
-          >
-            <Button size="lg" className="bg-gold hover:bg-yellow-600 text-charcoal-black font-semibold">
-              Apply Now
-            </Button>
-            <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-charcoal-black font-semibold">
-              Schedule Visit
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-gold font-medium text-sm md:text-lg tracking-wide uppercase mb-4"
+            >
+              Admissions Process
+            </motion.div>
+            
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="font-display font-bold text-3xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight"
+            >
+              Begin Your Child's
+              <span className="block text-gold">Educational Journey</span>
+            </motion.h1>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-white/90 text-base md:text-xl max-w-3xl mx-auto mb-8 leading-relaxed"
+            >
+              Join our community of excellence where every student is valued, challenged, and prepared for global success. Follow our simple admission process to get started.
+            </motion.p>
 
-      {/* Admission Process */}
-      <section className="py-16 bg-white md:py-24">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16 md:mb-20"
-          >
-            <h2 className="font-display font-bold text-3xl text-charcoal-black mb-6 md:text-4xl">
-              Admission Process
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Our streamlined admission process ensures a smooth transition for your child
-            </p>
-          </motion.div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 md:gap-6">
-            {admissionSteps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <motion.div
-                  key={step.step}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="relative mb-6">
-                    <div className="w-20 h-20 bg-primary-red rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Icon className="h-10 w-10 text-white" />
-                    </div>
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-gold rounded-full flex items-center justify-center text-charcoal-black font-bold text-sm">
-                      {step.step}
-                    </div>
-                  </div>
-                  <h3 className="font-display font-bold text-xl text-charcoal-black mb-4">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {step.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Programs & Fees */}
-      <section className="py-16 bg-neutral-light md:py-24">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16 md:mb-20"
-          >
-            <h2 className="font-display font-bold text-3xl text-charcoal-black mb-6 md:text-4xl">
-              Programs & Fees
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Choose the program that best fits your child's educational needs
-            </p>
-          </motion.div>
-
-          <div className="grid gap-8 md:grid-cols-3 md:gap-6">
-            {programs.map((program, index) => (
-              <motion.div
-                key={program.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-12 md:mb-16"
+            >
+              <Button 
+                size="lg" 
+                className="bg-gold hover:bg-yellow-600 text-charcoal-black font-semibold px-8"
+                onClick={() => document.getElementById('application-form')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                <Card padding="lg" className="h-full text-center hover:shadow-xl transition-all duration-300">
-                  <h3 className="font-display font-bold text-xl text-charcoal-black mb-4">
-                    {program.name}
-                  </h3>
-                  <div className="text-primary-red font-semibold text-lg mb-4">
-                    {program.ageRange}
-                  </div>
-                  <p className="text-gray-600 mb-6">
-                    {program.description}
-                  </p>
-                  <div className="text-2xl font-bold text-charcoal-black mb-6">
-                    {program.fee}
-                  </div>
-                  <Button variant="outline" className="w-full">
-                    Apply for This Program
-                  </Button>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+                Apply Now
+              </Button>
+              <Link href="/contact">
+                <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-charcoal-black font-semibold px-8">
+                  Schedule Visit
+                </Button>
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Process Steps */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex-1"
+          >
+            {/* Mobile: Vertical Layout */}
+            <div className="block md:hidden space-y-8">
+              {admissionSteps.map((step, index) => {
+                const Icon = step.icon;
+                return (
+                  <motion.div
+                    key={step.step}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                    className="flex items-start gap-4 bg-white/10 backdrop-blur-sm rounded-2xl p-6"
+                  >
+                    <div className="w-12 h-12 bg-gold rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Icon className="h-6 w-6 text-charcoal-black" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-gold font-semibold text-sm tracking-wide uppercase mb-2">
+                        Step {step.step}
+                      </div>
+                      <h3 className="font-display font-bold text-lg text-white mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="text-white/80 text-sm leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Desktop: Grid Layout */}
+            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+              {admissionSteps.map((step, index) => {
+                const Icon = step.icon;
+                return (
+                  <motion.div
+                    key={step.step}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.8 + index * 0.15 }}
+                    className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/15 transition-all duration-300"
+                  >
+                    <div className="w-16 h-16 bg-gold rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                      <Icon className="h-8 w-8 text-charcoal-black" />
+                    </div>
+                    <div className="w-8 h-1 bg-gold rounded-full mx-auto mb-4" />
+                    <div className="text-gold font-semibold text-sm tracking-wide uppercase mb-3">
+                      Step {step.step}
+                    </div>
+                    <h3 className="font-display font-bold text-xl text-white mb-4 leading-tight">
+                      {step.title}
+                    </h3>
+                    <p className="text-white/80 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.5 }}
+            className="text-center pb-8"
+          >
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="flex flex-col items-center text-white/60"
+            >
+              <span className="text-sm font-medium mb-2 hidden md:block">Scroll to apply</span>
+              <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
+                <motion.div
+                  animate={{ y: [0, 12, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="w-1 h-3 bg-white/60 rounded-full mt-2"
+                />
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -740,9 +723,10 @@ export default function Admissions() {
                           }`}
                         >
                           <option value="">Select Program</option>
-                          <option value="early-years">Early Years Program</option>
-                          <option value="primary">Primary School</option>
-                          <option value="secondary">Secondary School</option>
+                          <option value="playgroup">Playgroup</option>
+                          <option value="nursery">Nursery</option>
+                          <option value="pre-primary">Pre-Primary</option>
+                          <option value="primary">Primary (Grade 1-6)</option>
                         </select>
                         {formErrors.program && (
                           <p className="text-red-500 text-sm mt-1">{formErrors.program}</p>
@@ -770,18 +754,27 @@ export default function Admissions() {
                       
                       <div className="sm:col-span-2">
                         <label className="block text-sm font-medium text-gray-700 mb-2 md:mb-3">
-                          Grade Applying For *
+                          Grade/Class Applying For *
                         </label>
-                        <input
-                          type="text"
+                        <select
                           name="currentGrade"
                           value={formData.currentGrade}
                           onChange={handleInputChange}
-                          placeholder="e.g., Grade 1, Form 1, Nursery"
                           className={`w-full px-3 py-2 md:px-4 md:py-3 border rounded-md md:rounded-lg text-sm md:text-base focus:ring-2 focus:ring-primary-red focus:border-transparent focus:outline-none transition-all duration-200 ${
                             formErrors.currentGrade ? 'border-red-300 bg-red-50' : 'border-gray-300 focus:border-primary-red'
                           }`}
-                        />
+                        >
+                          <option value="">Select Grade/Class</option>
+                          <option value="playgroup">Playgroup</option>
+                          <option value="nursery">Nursery</option>
+                          <option value="pre-primary">Pre-Primary</option>
+                          <option value="grade-1">Grade 1</option>
+                          <option value="grade-2">Grade 2</option>
+                          <option value="grade-3">Grade 3</option>
+                          <option value="grade-4">Grade 4</option>
+                          <option value="grade-5">Grade 5</option>
+                          <option value="grade-6">Grade 6</option>
+                        </select>
                         {formErrors.currentGrade && (
                           <p className="text-red-500 text-sm mt-1">{formErrors.currentGrade}</p>
                         )}

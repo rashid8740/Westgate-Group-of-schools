@@ -339,6 +339,13 @@ export const galleryApi = {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
+      
+      // If there are specific validation errors, show them
+      if (errorData.errors && Array.isArray(errorData.errors)) {
+        const errorMessages = errorData.errors.map((err: any) => err.msg || err.message).join(', ');
+        throw new Error(`Validation failed: ${errorMessages}`);
+      }
+      
       throw new Error(errorData.message || `Upload failed: ${response.statusText}`);
     }
 

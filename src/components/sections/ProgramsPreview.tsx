@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Baby, GraduationCap, Trophy, ArrowRight } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
@@ -9,29 +10,29 @@ import { Button } from '@/components/ui/Button';
 const programs = [
   {
     icon: Baby,
-    title: 'Early Years Program',
-    subtitle: 'Nursery & Pre-Primary',
+    title: 'Playgroup & Nursery',
+    subtitle: 'Early Childhood',
     description: 'A nurturing environment where young minds begin their educational journey through play-based learning and creative exploration.',
     features: ['Play-based Learning', 'Creative Arts', 'Social Development', 'Early Literacy'],
-    ageRange: '2-5 years',
+    ageRange: '2-4 years',
     color: 'from-pink-500 to-purple-600'
   },
   {
     icon: GraduationCap,
-    title: 'Primary School',
+    title: 'Pre-Primary',
     subtitle: 'Foundation Education',
-    description: 'Comprehensive primary education following the Cambridge Primary curriculum, building strong foundations in core subjects.',
-    features: ['Cambridge Primary', 'STEM Focus', 'Language Arts', 'Character Building'],
-    ageRange: '6-11 years',
+    description: 'Preparation for primary education with emphasis on reading, writing, and mathematical foundations.',
+    features: ['Structured Learning', 'Christian Values', 'Holistic Development', 'School Readiness'],
+    ageRange: '4-6 years',
     color: 'from-blue-500 to-cyan-600'
   },
   {
     icon: Trophy,
-    title: 'Secondary School',
-    subtitle: 'Cambridge IGCSE & A-Levels',
-    description: 'World-class secondary education preparing students for university admission and global career opportunities.',
-    features: ['Cambridge IGCSE', 'A-Level Programs', 'University Prep', 'Leadership Skills'],
-    ageRange: '12-18 years',
+    title: 'Primary School (CBC)',
+    subtitle: 'Competency Based Curriculum',
+    description: 'Primary education from Grade 1 to 6, preparing students for KCPE excellence with Christian values.',
+    features: ['CBC Curriculum', 'KCPE Preparation', 'Co-curricular Activities', 'Christian Values'],
+    ageRange: '6-12 years',
     color: 'from-primary-red to-burgundy-deep'
   }
 ];
@@ -59,9 +60,9 @@ export const ProgramsPreview: React.FC = () => {
           </h2>
           
           <p className="text-sm text-gray-600 max-w-md mx-auto leading-relaxed md:text-xl md:max-w-3xl">
-            From early years to university preparation, our comprehensive programs are designed 
+            From playgroup to Grade 6, our comprehensive programs are designed 
             to nurture academic excellence, creativity, and character development at every stage 
-            of your child's educational journey.
+            of your child's educational journey, following the Competency Based Curriculum.
           </p>
         </motion.div>
 
@@ -143,9 +144,11 @@ export const ProgramsPreview: React.FC = () => {
               Schedule a school tour and discover how Westgate can unlock your child's potential.
             </p>
             <div className="flex flex-col gap-3 max-w-xs mx-auto md:flex-row md:gap-4 md:justify-center md:max-w-none">
-              <Button size="md" variant="secondary" className="text-sm font-medium md:size-lg">
-                Schedule School Tour
-              </Button>
+              <Link href="/contact">
+                <Button size="md" variant="secondary" className="text-sm font-medium md:size-lg">
+                  Schedule School Tour
+                </Button>
+              </Link>
               <Button size="md" variant="outline" className="text-sm font-medium bg-white/10 border-white text-white hover:bg-white hover:text-charcoal-black md:size-lg">
                 Download Prospectus
               </Button>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Play, Award, Users, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -10,26 +11,29 @@ const heroSlides = [
   {
     id: 1,
     title: 'Nurturing Tomorrow\'s Leaders',
-    subtitle: 'Excellence in Education Since 1995',
-    description: 'A premier educational institution committed to academic excellence, character development, and preparing students for global success.',
+    subtitle: 'Excellence in Education Since Early 1990s',
+    description: 'A premier Christian-based educational institution committed to academic excellence, character development, and holistic education through co-curricular activities.',
     image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    cta: 'Schedule School Tour'
+    cta: 'Schedule School Tour',
+    ctaLink: '/contact'
   },
   {
     id: 2,
-    title: 'World-Class Facilities',
-    subtitle: 'Modern Learning Environment',
-    description: 'State-of-the-art classrooms, laboratories, sports facilities, and technology that enhance the learning experience.',
+    title: 'KCPE Excellence',
+    subtitle: 'Proven Academic Performance',
+    description: 'Consistently ranked among top three schools in Kabete Sub-county with remarkable KCPE results and strong transition rates to secondary school.',
     image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    cta: 'Explore Facilities'
+    cta: 'View Results',
+    ctaLink: '/academics'
   },
   {
     id: 3,
-    title: 'Cambridge International School',
-    subtitle: 'Global Education Standards',
-    description: 'Offering Cambridge IGCSE and A-Level programs that prepare students for universities worldwide.',
+    title: 'Holistic Development',
+    subtitle: 'Beyond Academics',
+    description: 'Comprehensive education including drama, music, swimming, French, and computer classes to develop well-rounded individuals.',
     image: 'https://images.unsplash.com/photo-1627556704114-f0bf61edabda?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80',
-    cta: 'Learn About Programs'
+    cta: 'Learn About Programs',
+    ctaLink: '/academics'
   }
 ];
 
@@ -136,9 +140,11 @@ export const Hero: React.FC = () => {
                     transition={{ duration: 0.6, delay: 0.8 }}
                     className="space-y-3 mb-8"
                   >
-                    <Button className="w-full bg-gold hover:bg-yellow-600 text-charcoal-black font-semibold py-3 text-sm">
-                      {slide.cta}
-                    </Button>
+                    <Link href={slide.ctaLink}>
+                      <Button className="w-full bg-gold hover:bg-yellow-600 text-charcoal-black font-semibold py-3 text-sm">
+                        {slide.cta}
+                      </Button>
+                    </Link>
                     <Button variant="outline" className="w-full border-white text-white py-3 text-sm hover:bg-white hover:text-charcoal-black">
                       <Play className="h-4 w-4 mr-2" />
                       Watch Video
@@ -152,9 +158,9 @@ export const Hero: React.FC = () => {
                     transition={{ duration: 0.6, delay: 1 }}
                     className="text-xs text-white/80 space-y-1"
                   >
-                    <p>✓ 28+ Years of Excellence</p>
-                    <p>✓ 1,200+ Successful Students</p>
-                    <p>✓ Cambridge International Certified</p>
+                    <p>✓ 30+ Years of Excellence</p>
+                    <p>✓ Top 3 in Kabete Sub-county</p>
+                    <p>✓ KCPE Mean Score 355.8</p>
                   </motion.div>
                 </div>
 
@@ -194,9 +200,11 @@ export const Hero: React.FC = () => {
                       transition={{ duration: 0.8, delay: 0.8 }}
                       className="flex flex-col sm:flex-row gap-6 justify-start"
                     >
-                      <Button size="xl" className="text-lg font-semibold px-12 bg-gold hover:bg-yellow-600 text-charcoal-black">
-                        {slide.cta}
-                      </Button>
+                      <Link href={slide.ctaLink}>
+                        <Button size="xl" className="text-lg font-semibold px-12 bg-gold hover:bg-yellow-600 text-charcoal-black">
+                          {slide.cta}
+                        </Button>
+                      </Link>
                       <Button variant="outline" size="xl" className="text-lg font-semibold px-12 bg-white/10 border-white text-white hover:bg-white hover:text-charcoal-black">
                         <Play className="h-6 w-6 mr-3" />
                         Watch Video

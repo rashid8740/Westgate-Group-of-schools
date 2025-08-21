@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Award, Users, BookOpen, Globe, Heart, Target, Eye, Lightbulb } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
@@ -31,32 +32,26 @@ const values = [
 
 const leadership = [
   {
-    name: 'Dr. Sarah Mwangi',
-    role: 'Principal',
-    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/team/principal.jpg',
-    bio: 'Leading Westgate for over 15 years with a vision for educational excellence.'
+    name: 'Mrs. Josephine Gathii',
+    role: 'Founder & Director',
+    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/team/founder.jpg',
+    bio: 'Founded Westgate Shield Primary School in the early 1990s, building from humble beginnings to create a center of educational excellence.'
   },
   {
-    name: 'Prof. Michael Kimani',
-    role: 'Deputy Principal (Academics)',
-    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/team/deputy-academics.jpg',
-    bio: 'Expert in curriculum development with 20+ years in international education.'
-  },
-  {
-    name: 'Mrs. Grace Wanjiku',
-    role: 'Deputy Principal (Student Affairs)',
-    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/team/deputy-student-affairs.jpg',
-    bio: 'Passionate advocate for student welfare and holistic development.'
+    name: 'Mr. Peter Gathii',
+    role: 'Co-Founder & Director',
+    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/team/co-founder.jpg',
+    bio: 'Partnered in establishing the school, contributing to its growth and development over three decades.'
   }
 ];
 
 const milestones = [
-  { year: '1995', event: 'Westgate School founded', description: 'Established with a vision for excellence' },
-  { year: '2001', event: 'Cambridge International Status', description: 'Became an authorized Cambridge school' },
-  { year: '2010', event: 'Secondary School Launch', description: 'Expanded to offer IGCSE and A-Levels' },
-  { year: '2015', event: 'Award of Excellence', description: 'Recognized as top performing school nationally' },
-  { year: '2020', event: 'Digital Learning Initiative', description: 'Pioneered online learning during pandemic' },
-  { year: '2023', event: '28 Years of Excellence', description: 'Celebrating nearly three decades of success' }
+  { year: 'Early 1990s', event: 'School Founded', description: 'Westgate Shield Primary School established by Josephine and Peter Gathii' },
+  { year: '1990s', event: 'Humble Beginnings', description: 'Started with classrooms built from garage, pupil recruitment by word of mouth' },
+  { year: '2010-2020', event: 'Academic Excellence', description: 'Consistently ranked among top 3 schools in Kabete Sub-county' },
+  { year: '2020', event: 'KCPE Achievement', description: 'Remarkable mean score of 355.8, top student scored 416 marks' },
+  { year: '2020', event: 'Strong Performance', description: 'Excellent results in English (75.1), Social Studies (72.3), Kiswahili (71.4)' },
+  { year: 'Present', event: '30+ Years of Excellence', description: 'Continuing to nurture future leaders with Christian values and holistic education' }
 ];
 
 export default function About() {
@@ -90,7 +85,7 @@ export default function About() {
             className="text-white font-display font-bold text-3xl leading-tight mb-6 md:text-6xl"
           >
             Shaping Future Leaders
-            <span className="block text-gold">Since 1995</span>
+            <span className="block text-gold">Since Early 1990s</span>
           </motion.h1>
           
           <motion.p
@@ -325,9 +320,11 @@ export default function About() {
               nurturing, academically rigorous environment.
             </p>
             <div className="flex flex-col gap-4 max-w-md mx-auto md:flex-row md:max-w-none md:justify-center">
-              <Button size="lg" variant="secondary" className="font-semibold">
-                Schedule a Tour
-              </Button>
+              <Link href="/contact">
+                <Button size="lg" variant="secondary" className="font-semibold">
+                  Schedule a Tour
+                </Button>
+              </Link>
               <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-charcoal-black font-semibold">
                 Download Prospectus
               </Button>

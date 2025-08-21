@@ -1,101 +1,53 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Camera,
-  X,
-  ChevronLeft,
-  ChevronRight,
   Users,
   Trophy,
   Music,
   Palette,
   Heart,
   Zap,
-  Calendar,
   Clock,
   MapPin,
-  Star
+  Star,
+  AlertCircle,
+  RefreshCw,
+  Shirt,
+  CircleDot,
+  Waves,
+  Target,
+  Footprints,
+  Circle,
+  Shield,
+  Network
 } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import BentoGallery from '@/components/gallery/BentoGallery';
+import { galleryApi } from '@/lib/api';
 
-// Gallery images - using Cloudinary URLs
-const galleryImages = [
-  {
-    id: 1,
-    src: 'https://res.cloudinary.com/westgate-school/image/upload/v1/gallery/students-in-classroom.jpg',
-    alt: 'Students engaged in classroom learning',
-    category: 'academics'
-  },
-  {
-    id: 2,
-    src: 'https://res.cloudinary.com/westgate-school/image/upload/v1/gallery/science-lab-experiment.jpg',
-    alt: 'Students conducting science experiments',
-    category: 'academics'
-  },
-  {
-    id: 3,
-    src: 'https://res.cloudinary.com/westgate-school/image/upload/v1/gallery/sports-football-match.jpg',
-    alt: 'Football match in progress',
-    category: 'sports'
-  },
-  {
-    id: 4,
-    src: 'https://res.cloudinary.com/westgate-school/image/upload/v1/gallery/art-class-painting.jpg',
-    alt: 'Students in art class painting',
-    category: 'arts'
-  },
-  {
-    id: 5,
-    src: 'https://res.cloudinary.com/westgate-school/image/upload/v1/gallery/music-orchestra-performance.jpg',
-    alt: 'School orchestra performance',
-    category: 'arts'
-  },
-  {
-    id: 6,
-    src: 'https://res.cloudinary.com/westgate-school/image/upload/v1/gallery/swimming-pool-competition.jpg',
-    alt: 'Swimming competition at school pool',
-    category: 'sports'
-  },
-  {
-    id: 7,
-    src: 'https://res.cloudinary.com/westgate-school/image/upload/v1/gallery/library-students-studying.jpg',
-    alt: 'Students studying in the library',
-    category: 'academics'
-  },
-  {
-    id: 8,
-    src: 'https://res.cloudinary.com/westgate-school/image/upload/v1/gallery/drama-performance.jpg',
-    alt: 'School drama performance',
-    category: 'arts'
-  },
-  {
-    id: 9,
-    src: 'https://res.cloudinary.com/westgate-school/image/upload/v1/gallery/robotics-club.jpg',
-    alt: 'Students working on robotics project',
-    category: 'clubs'
-  },
-  {
-    id: 10,
-    src: 'https://res.cloudinary.com/westgate-school/image/upload/v1/gallery/graduation-ceremony.jpg',
-    alt: 'Graduation ceremony celebration',
-    category: 'events'
-  },
-  {
-    id: 11,
-    src: 'https://res.cloudinary.com/westgate-school/image/upload/v1/gallery/debate-competition.jpg',
-    alt: 'Inter-school debate competition',
-    category: 'clubs'
-  },
-  {
-    id: 12,
-    src: 'https://res.cloudinary.com/westgate-school/image/upload/v1/gallery/cultural-day-celebration.jpg',
-    alt: 'Cultural day celebration',
-    category: 'events'
-  }
-];
+interface GalleryImage {
+  _id: string;
+  title: string;
+  description?: string;
+  alt: string;
+  urls: {
+    thumbnail: string;
+    medium: string;
+    large: string;
+    original: string;
+  };
+  category: string;
+  tags: string[];
+  width: number;
+  height: number;
+  isFeatured: boolean;
+  eventDate?: string;
+  location?: string;
+  createdAt: string;
+}
 
 const clubs = [
   {
@@ -143,247 +95,148 @@ const clubs = [
 ];
 
 const sports = [
-  { name: 'Football', season: 'Year Round', level: 'All Levels' },
-  { name: 'Basketball', season: 'September - March', level: 'All Levels' },
-  { name: 'Swimming', season: 'Year Round', level: 'All Levels' },
-  { name: 'Tennis', season: 'February - November', level: 'All Levels' },
-  { name: 'Athletics', season: 'Year Round', level: 'All Levels' },
-  { name: 'Volleyball', season: 'January - October', level: 'All Levels' },
-  { name: 'Rugby', season: 'March - September', level: 'Secondary Only' },
-  { name: 'Netball', season: 'Year Round', level: 'All Levels' }
+  { name: 'Football', season: 'Year Round', level: 'All Levels', icon: Shirt },
+  { name: 'Basketball', season: 'September - March', level: 'All Levels', icon: CircleDot },
+  { name: 'Swimming', season: 'Year Round', level: 'All Levels', icon: Waves },
+  { name: 'Tennis', season: 'February - November', level: 'All Levels', icon: Target },
+  { name: 'Athletics', season: 'Year Round', level: 'All Levels', icon: Footprints },
+  { name: 'Volleyball', season: 'January - October', level: 'All Levels', icon: Circle },
+  { name: 'Rugby', season: 'March - September', level: 'Secondary Only', icon: Shield },
+  { name: 'Netball', season: 'Year Round', level: 'All Levels', icon: Network }
 ];
 
-const events = [
-  {
-    title: 'Annual Sports Day',
-    date: 'March 15, 2024',
-    description: 'Inter-house sports competition featuring track and field events.',
-    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/events/sports-day.jpg'
-  },
-  {
-    title: 'Cultural Festival',
-    date: 'May 20, 2024',
-    description: 'Celebration of diverse cultures with performances and exhibitions.',
-    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/events/cultural-festival.jpg'
-  },
-  {
-    title: 'Science Fair',
-    date: 'July 10, 2024',
-    description: 'Student showcase of innovative science and technology projects.',
-    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/events/science-fair.jpg'
-  },
-  {
-    title: 'Drama Production',
-    date: 'September 5, 2024',
-    description: 'Annual school play featuring talented student performers.',
-    image: 'https://res.cloudinary.com/westgate-school/image/upload/v1/events/drama-production.jpg'
-  }
-];
+
 
 export default function StudentLife() {
-  const [selectedImage, setSelectedImage] = useState<number | null>(null);
-  const [filter, setFilter] = useState<string>('all');
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const categories = ['all', 'academics', 'sports', 'arts', 'clubs', 'events'];
-
-  const filteredImages = filter === 'all' 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === filter);
-
-  const openLightbox = (index: number) => {
-    setSelectedImage(index);
-  };
-
-  const closeLightbox = () => {
-    setSelectedImage(null);
-  };
-
-  const nextImage = () => {
-    if (selectedImage !== null) {
-      setSelectedImage((selectedImage + 1) % filteredImages.length);
+  // Fetch gallery images
+  const fetchGalleryImages = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      
+      // Fetch only active images, sorted by featured first, then by date
+      const params = new URLSearchParams({
+        isActive: 'true',
+        sortBy: 'displayOrder',
+        sortOrder: 'asc',
+        limit: '50'
+      });
+      
+      const response = await galleryApi.getAll(params);
+      setGalleryImages(response.data.images);
+    } catch (error) {
+      console.error('Failed to fetch gallery images:', error);
+      setError('Failed to load gallery images. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
-  const prevImage = () => {
-    if (selectedImage !== null) {
-      setSelectedImage(selectedImage === 0 ? filteredImages.length - 1 : selectedImage - 1);
-    }
-  };
+  useEffect(() => {
+    fetchGalleryImages();
+  }, []);
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img 
-            src="https://res.cloudinary.com/westgate-school/image/upload/v1/student-life/hero-student-life.jpg" 
-            alt="Student Life"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-        
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-gold font-medium text-sm tracking-wide uppercase mb-4 md:text-lg"
-          >
-            Student Life
-          </motion.div>
-          
-          <motion.h1
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-white font-display font-bold text-3xl leading-tight mb-6 md:text-6xl"
-          >
-            Where Memories
-            <span className="block text-gold">Are Made</span>
-          </motion.h1>
-          
-          <motion.p
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-white/90 text-lg leading-relaxed max-w-2xl mx-auto mb-8 md:text-xl"
-          >
-            Experience the vibrant community life at Westgate, where students grow, learn, 
-            and create lasting friendships through diverse activities and experiences.
-          </motion.p>
-          
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <Button size="lg" className="bg-gold hover:bg-yellow-600 text-charcoal-black font-semibold">
-              Explore Our Gallery
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Breathtaking Gallery */}
-      <section className="py-16 bg-white md:py-24">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
+      {/* Hero Gallery Section */}
+      <section className="relative min-h-screen bg-gradient-to-b from-neutral-light to-white pt-20 pb-16 md:pt-24 md:pb-20">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 h-full flex flex-col">
+          {/* Hero Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12 md:mb-16"
           >
-            <h2 className="font-display font-bold text-3xl text-charcoal-black mb-6 md:text-4xl">
-              Life at Westgate
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
-              Discover the vibrant moments that make Westgate special through our gallery
-            </p>
-
-            {/* Gallery Filters */}
-            <div className="flex flex-wrap justify-center gap-2 md:gap-4">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setFilter(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    filter === category
-                      ? 'bg-primary-red text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </button>
-              ))}
-            </div>
+          <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+              className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-charcoal-black mb-6"
+          >
+              Life at <span className="text-primary-red">Westgate</span>
+          </motion.h1>
+          <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto mb-8"
+          >
+              Experience the vibrant community, endless opportunities, and unforgettable moments that define the Westgate experience
+          </motion.p>
           </motion.div>
-
-          {/* Gallery Grid */}
+          
+          {/* Gallery Content */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex-1"
           >
-            {filteredImages.map((image, index) => (
-              <motion.div
-                key={image.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group cursor-pointer relative overflow-hidden rounded-xl aspect-square"
-                onClick={() => openLightbox(index)}
-              >
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                  <Camera className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {loading ? (
+              <div className="text-center py-20">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-red mx-auto mb-6"></div>
+                <p className="text-gray-600 text-lg">Loading our amazing gallery...</p>
+              </div>
+            ) : error ? (
+              <Card padding="lg" className="max-w-md mx-auto">
+                <div className="text-center py-8">
+                  <AlertCircle className="h-16 w-16 text-red-400 mx-auto mb-6" />
+                  <h3 className="text-xl font-medium text-gray-900 mb-4">Error Loading Gallery</h3>
+                  <p className="text-gray-600 mb-6">{error}</p>
+                  <Button onClick={fetchGalleryImages} className="bg-primary-red hover:bg-primary-red/90">
+                    <RefreshCw className="h-4 w-4 mr-2" />
+                    Try Again
+            </Button>
+        </div>
+              </Card>
+            ) : galleryImages.length > 0 ? (
+              <BentoGallery 
+                images={galleryImages}
+                autoPlay={true}
+                autoPlayInterval={6000}
+                showFilters={true}
+                maxItems={30}
+              />
+            ) : (
+              <div className="text-center py-20">
+                <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-3xl">📸</span>
                 </div>
-              </motion.div>
-            ))}
+                <h3 className="text-xl font-medium text-gray-900 mb-4">Gallery Coming Soon</h3>
+                <p className="text-gray-600 max-w-md mx-auto">Our amazing student life gallery will appear here once images are uploaded.</p>
+              </div>
+            )}
           </motion.div>
         </div>
-      </section>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {selectedImage !== null && (
+        {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-            onClick={closeLightbox}
+          transition={{ duration: 1, delay: 1.5 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="flex flex-col items-center text-gray-400"
           >
+            <span className="text-sm font-medium mb-2 hidden md:block">Scroll to explore more</span>
+            <div className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center">
             <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              className="relative max-w-4xl max-h-full"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <img
-                src={filteredImages[selectedImage].src}
-                alt={filteredImages[selectedImage].alt}
-                className="max-w-full max-h-full object-contain rounded-lg"
+                animate={{ y: [0, 12, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-1 h-3 bg-gray-400 rounded-full mt-2"
               />
-              
-              {/* Close Button */}
-              <button
-                onClick={closeLightbox}
-                className="absolute top-4 right-4 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
-              >
-                <X className="h-6 w-6" />
-              </button>
-              
-              {/* Navigation Buttons */}
-              <button
-                onClick={prevImage}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
-              >
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-              
-              <button
-                onClick={nextImage}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70 transition-colors"
-              >
-                <ChevronRight className="h-6 w-6" />
-              </button>
-              
-              {/* Image Counter */}
-              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 px-4 py-2 rounded-full text-white text-sm">
-                {selectedImage + 1} of {filteredImages.length}
               </div>
             </motion.div>
           </motion.div>
-        )}
-      </AnimatePresence>
+      </section>
 
       {/* Clubs & Activities */}
       <section className="py-16 bg-neutral-light md:py-24">
@@ -403,7 +256,50 @@ export default function StudentLife() {
             </p>
           </motion.div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
+          {/* Mobile: Balanced card design */}
+          <div className="block md:hidden space-y-3">
+            {clubs.map((club, index) => {
+              const Icon = club.icon;
+              return (
+                <motion.div
+                  key={club.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.01 }}
+                  className="group"
+                >
+                  <div className="relative bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 overflow-hidden">
+                    {/* Subtle background pattern */}
+                    <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-primary-red/3 to-transparent rounded-bl-2xl"></div>
+                    
+                    <div className="relative">
+                      {/* Content-first layout */}
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="font-bold text-lg text-charcoal-black group-hover:text-primary-red transition-colors duration-300 flex-1">
+                          {club.name}
+                        </h3>
+                        <div className="w-8 h-8 bg-primary-red/10 rounded-lg flex items-center justify-center flex-shrink-0 ml-3 group-hover:bg-primary-red/15 transition-colors duration-300">
+                          <Icon className="h-4 w-4 text-primary-red opacity-70" />
+                        </div>
+                      </div>
+                      
+                      <p className="text-gray-600 text-sm leading-relaxed line-clamp-2 mb-3">
+                        {club.description}
+                      </p>
+                      
+                      {/* Subtle indicator */}
+                      <div className="w-6 h-0.5 bg-gradient-to-r from-primary-red/40 to-transparent rounded-full"></div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Desktop: Balanced grid layout */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {clubs.map((club, index) => {
               const Icon = club.icon;
               return (
@@ -413,33 +309,46 @@ export default function StudentLife() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ y: -4 }}
+                  className="group h-full"
                 >
-                  <Card padding="lg" className="h-full hover:shadow-xl transition-all duration-300">
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="w-12 h-12 bg-primary-red/10 rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Icon className="h-6 w-6 text-primary-red" />
+                  <div className="relative bg-white rounded-2xl p-6 h-full shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 overflow-hidden">
+                    {/* Subtle background elements */}
+                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary-red/4 to-transparent rounded-bl-full transform translate-x-6 -translate-y-6"></div>
+                    
+                    <div className="relative z-10 h-full flex flex-col">
+                      {/* Header with balanced icon placement */}
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex-1">
+                          <h3 className="font-display font-bold text-xl text-charcoal-black group-hover:text-primary-red transition-colors duration-300 leading-tight mb-2">
+                            {club.name}
+                          </h3>
+                          <div className="w-8 h-0.5 bg-primary-red/30 rounded-full"></div>
+                        </div>
+                        
+                        <div className="w-10 h-10 bg-primary-red/8 rounded-xl flex items-center justify-center flex-shrink-0 ml-4 group-hover:bg-primary-red/12 transition-colors duration-300">
+                          <Icon className="h-5 w-5 text-primary-red opacity-60" />
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-display font-bold text-xl text-charcoal-black mb-2">
-                          {club.name}
-                        </h3>
-                        <p className="text-gray-600 leading-relaxed">
+                      
+                      {/* Content */}
+                      <div className="flex-1">
+                        <p className="text-gray-600 leading-relaxed text-base">
                           {club.description}
                         </p>
                       </div>
+                      
+                      {/* Subtle footer element */}
+                      <div className="mt-6 pt-4 border-t border-gray-50">
+                        <div className="flex items-center justify-between">
+                          <div className="w-12 h-1 bg-gradient-to-r from-primary-red/40 to-transparent rounded-full"></div>
+                          <div className="text-xs text-gray-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            Explore
                     </div>
-                    
-                    <div className="space-y-2 text-sm">
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <Clock className="h-4 w-4 text-primary-red" />
-                        {club.meeting}
                       </div>
-                      <div className="flex items-center gap-2 text-gray-600">
-                        <MapPin className="h-4 w-4 text-primary-red" />
-                        {club.location}
                       </div>
                     </div>
-                  </Card>
+                  </div>
                 </motion.div>
               );
             })}
@@ -465,112 +374,123 @@ export default function StudentLife() {
             </p>
           </motion.div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {sports.map((sport, index) => (
+          {/* Mobile: Balanced horizontal scroll */}
+          <div className="block md:hidden">
+            <div className="flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory">
+              {sports.map((sport, index) => {
+                const Icon = sport.icon;
+                return (
+                  <motion.div
+                    key={sport.name}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.02 }}
+                    className="flex-none w-44 snap-start group"
+                  >
+                    <div className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-300 h-full overflow-hidden">
+                      {/* Subtle background pattern */}
+                      <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-br from-primary-red/4 to-transparent rounded-bl-2xl"></div>
+                      
+                      <div className="relative h-full flex flex-col">
+                        {/* Header with icon */}
+                        <div className="flex items-center justify-between mb-3">
+                          <h3 className="font-bold text-base text-charcoal-black group-hover:text-primary-red transition-colors duration-300 flex-1 leading-tight">
+                            {sport.name}
+                          </h3>
+                          <div className="w-7 h-7 bg-primary-red/10 rounded-lg flex items-center justify-center flex-shrink-0 ml-2 group-hover:bg-primary-red/15 transition-colors duration-300">
+                            <Icon className="h-3.5 w-3.5 text-primary-red opacity-70" />
+                          </div>
+                        </div>
+                        
+                        {/* Content */}
+                        <div className="flex-1 space-y-2">
+                          <div className="text-xs text-gray-600">
+                            <p><span className="font-medium text-gray-700">Season:</span> {sport.season}</p>
+                            <p><span className="font-medium text-gray-700">Level:</span> {sport.level}</p>
+                          </div>
+                        </div>
+                        
+                        {/* Footer indicator */}
+                        <div className="mt-3 pt-2">
+                          <div className="w-5 h-0.5 bg-gradient-to-r from-primary-red/40 to-transparent rounded-full"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+            <div className="flex justify-center mt-4">
+              <p className="text-sm text-gray-500 flex items-center gap-1">
+                <span>👈</span> Swipe to see more sports
+              </p>
+            </div>
+          </div>
+
+          {/* Desktop: Balanced grid layout */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {sports.map((sport, index) => {
+              const Icon = sport.icon;
+              return (
               <motion.div
                 key={sport.name}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card padding="lg" className="text-center hover:shadow-lg transition-all duration-300">
-                  <div className="w-16 h-16 bg-primary-red rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Trophy className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="font-display font-bold text-lg text-charcoal-black mb-3">
+                  whileHover={{ y: -4 }}
+                  className="group h-full"
+                >
+                  <div className="relative bg-white rounded-2xl p-5 h-full shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 overflow-hidden">
+                    {/* Subtle background elements */}
+                    <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-primary-red/4 to-transparent rounded-bl-full transform translate-x-4 -translate-y-4"></div>
+                    
+                    <div className="relative z-10 h-full flex flex-col">
+                      {/* Header with balanced layout */}
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex-1">
+                          <h3 className="font-display font-bold text-lg text-charcoal-black group-hover:text-primary-red transition-colors duration-300 leading-tight mb-2">
                     {sport.name}
                   </h3>
-                  <div className="space-y-2 text-sm text-gray-600">
-                    <p><strong>Season:</strong> {sport.season}</p>
-                    <p><strong>Level:</strong> {sport.level}</p>
+                          <div className="w-6 h-0.5 bg-primary-red/30 rounded-full"></div>
                   </div>
-                </Card>
-              </motion.div>
-            ))}
+                        
+                        <div className="w-9 h-9 bg-primary-red/8 rounded-xl flex items-center justify-center flex-shrink-0 ml-3 group-hover:bg-primary-red/12 transition-colors duration-300">
+                          <Icon className="h-4 w-4 text-primary-red opacity-60" />
           </div>
         </div>
-      </section>
-
-      {/* Upcoming Events */}
-      <section className="py-16 bg-neutral-light md:py-24">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16 md:mb-20"
-          >
-            <h2 className="font-display font-bold text-3xl text-charcoal-black mb-6 md:text-4xl">
-              Upcoming Events
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Join us for exciting events that bring our community together
-            </p>
-          </motion.div>
-
-          <div className="grid gap-8 md:grid-cols-2 md:gap-6">
-            {events.map((event, index) => (
-              <motion.div
-                key={event.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card padding="none" className="overflow-hidden hover:shadow-xl transition-all duration-300">
-                  <img 
-                    src={event.image} 
-                    alt={event.title}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 text-primary-red text-sm font-medium mb-3">
-                      <Calendar className="h-4 w-4" />
-                      {event.date}
+                      
+                      {/* Content */}
+                      <div className="flex-1 space-y-3">
+                        <div className="space-y-2 text-sm text-gray-600">
+                          <p><span className="font-medium text-gray-700">Season:</span> {sport.season}</p>
+                          <p><span className="font-medium text-gray-700">Level:</span> {sport.level}</p>
+                        </div>
+                      </div>
+                      
+                      {/* Subtle footer element */}
+                      <div className="mt-4 pt-3 border-t border-gray-50">
+                        <div className="flex items-center justify-between">
+                          <div className="w-10 h-1 bg-gradient-to-r from-primary-red/40 to-transparent rounded-full"></div>
+                          <div className="text-xs text-gray-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            Join
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <h3 className="font-display font-bold text-xl text-charcoal-black mb-3">
-                      {event.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {event.description}
-                    </p>
                   </div>
-                </Card>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-primary-red to-burgundy-deep md:py-24">
-        <div className="max-w-4xl mx-auto text-center px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="font-display font-bold text-3xl text-white mb-6 md:text-4xl">
-              Be Part of Our Community
-            </h2>
-            <p className="text-white/90 text-lg leading-relaxed mb-8 md:text-xl">
-              Experience the vibrant student life at Westgate firsthand. Schedule a visit 
-              to see our facilities and meet our amazing community.
-            </p>
-            <div className="flex flex-col gap-4 max-w-md mx-auto md:flex-row md:max-w-none md:justify-center">
-              <Button size="lg" variant="secondary" className="font-semibold">
-                Schedule Campus Visit
-              </Button>
-              <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-charcoal-black font-semibold">
-                Join Our Community
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+
+
+      
     </div>
   );
 }

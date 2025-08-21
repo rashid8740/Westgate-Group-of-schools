@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Phone, Mail, MapPin, Clock, Calendar, Download, ArrowRight } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
@@ -28,7 +29,7 @@ const contactMethods = [
     title: 'Visit Us',
     description: 'Schedule a campus tour and see our facilities',
     action: 'Book School Tour',
-    href: '#tour',
+    href: '/contact',
     color: 'from-purple-500 to-purple-600'
   }
 ];
@@ -39,14 +40,16 @@ const quickActions = [
     title: 'Schedule Tour',
     description: 'Book a personalized campus visit',
     buttonText: 'Book Now',
-    variant: 'primary' as const
+    variant: 'primary' as const,
+    href: '/contact'
   },
   {
     icon: Download,
     title: 'Download Prospectus',
     description: 'Get detailed information about our programs',
     buttonText: 'Download PDF',
-    variant: 'outline' as const
+    variant: 'outline' as const,
+    href: '/about'
   }
 ];
 
@@ -155,10 +158,12 @@ export const ContactCTA: React.FC = () => {
                         {action.description}
                       </p>
                       
-                      <Button variant={action.variant} size="lg" className="w-full sm:w-auto">
-                        {action.buttonText}
-                        <ArrowRight className="h-5 w-5 ml-2" />
-                      </Button>
+                      <Link href={action.href}>
+                        <Button variant={action.variant} size="lg" className="w-full sm:w-auto">
+                          {action.buttonText}
+                          <ArrowRight className="h-5 w-5 ml-2" />
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </Card>
@@ -189,9 +194,10 @@ export const ContactCTA: React.FC = () => {
                   <div>
                     <div className="font-semibold mb-1">Address</div>
                     <div className="opacity-90">
-                      Westgate Road, Nairobi<br />
-                      P.O. Box 12345-00100<br />
-                      Nairobi, Kenya
+                      Muthiga, Kikuyu<br />
+                      Off Nairobi-Nakuru Highway<br />
+                      Opposite Tulia Gardens<br />
+                      P.O. Box 849, Kikuyu 00902
                     </div>
                   </div>
                 </div>
@@ -201,9 +207,9 @@ export const ContactCTA: React.FC = () => {
                   <div>
                     <div className="font-semibold mb-1">Office Hours</div>
                     <div className="opacity-90">
-                      Monday - Friday: 7:00 AM - 5:00 PM<br />
+                      Monday - Friday: 8:00 AM - 5:00 PM<br />
                       Saturday: 8:00 AM - 1:00 PM<br />
-                      Sunday: Closed
+                      Sunday: 9:00 AM - 1:00 PM
                     </div>
                   </div>
                 </div>
@@ -246,13 +252,17 @@ export const ContactCTA: React.FC = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="xl" className="text-lg">
-              Apply Now
-              <ArrowRight className="h-5 w-5 ml-2" />
-            </Button>
-            <Button variant="outline" size="xl" className="text-lg">
-              Schedule Consultation
-            </Button>
+            <Link href="/admissions">
+              <Button size="xl" className="text-lg">
+                Apply Now
+                <ArrowRight className="h-5 w-5 ml-2" />
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button variant="outline" size="xl" className="text-lg">
+                Schedule Consultation
+              </Button>
+            </Link>
           </div>
           
           <div className="mt-6 text-sm text-gray-500">
