@@ -1,6 +1,8 @@
 // API utility functions for backend communication
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+// Normalize base URL: remove trailing slashes
+const RAW_API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = RAW_API_BASE_URL.replace(/\/+$/, '');
 
 // Token management
 const TOKEN_KEY = 'westgate_admin_token';
@@ -33,7 +35,14 @@ async function apiRequest<T>(
 ): Promise<T> {
   const { requireAuth = false, ...fetchOptions } = options;
 
-  const url = `${API_BASE_URL}${endpoint}`;
+  // Normalize endpoint: ensure single leading slash and avoid double /api
+  let normalizedEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+  const baseEndsWithApi = /\/api$/i.test(API_BASE_URL);
+  if (baseEndsWithApi && /^\/api(\/|$)/i.test(normalizedEndpoint)) {
+    normalizedEndpoint = normalizedEndpoint.replace(/^\/api/i, '');
+    if (!normalizedEndpoint.startsWith('/')) normalizedEndpoint = `/${normalizedEndpoint}`;
+  }
+  const url = `${API_BASE_URL}${normalizedEndpoint}`;
   
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
