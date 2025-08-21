@@ -111,347 +111,333 @@ const departments = [
 
 const achievements = [
   {
-    title: '98% Pass Rate',
-    description: 'Consistent high performance in Cambridge examinations',
+    title: 'KCPE Mean Score 355.8',
+    description: '2020 exceptional performance with top student scoring 416',
     icon: Star
   },
   {
-    title: 'A* - C Rate: 85%',
-    description: 'Majority of students achieve top grades',
+    title: 'Top 3 in Sub-county',
+    description: 'Consistently ranked among best schools in Kabete',
     icon: Award
   },
   {
-    title: 'University Acceptance',
-    description: '95% of graduates accepted to universities of choice',
-    icon: GraduationCap
+    title: 'Strong Subject Performance',
+    description: 'English 75.1, Social Studies 72.3, Kiswahili 71.4',
+    icon: BookOpen
   },
   {
-    title: 'International Recognition',
-    description: 'Students admitted to top universities globally',
-    icon: Globe
+    title: 'Secondary School Transition',
+    description: 'Excellent placement rates in top secondary schools',
+    icon: GraduationCap
   }
 ];
 
 const supportServices = [
   {
-    title: 'Academic Support',
-    description: 'Extra lessons, tutorial sessions, and individualized learning plans',
-    icon: BookOpen
-  },
-  {
-    title: 'University Guidance',
-    description: 'Comprehensive counseling for university applications and career planning',
-    icon: Target
-  },
-  {
-    title: 'Small Class Sizes',
-    description: 'Maximum 20 students per class ensures personalized attention',
+    title: 'Individual Attention',
+    description: 'Small class sizes ensure every child receives personalized support',
     icon: Users
   },
   {
-    title: 'Extended Learning',
-    description: 'After-school programs, study groups, and enrichment activities',
-    icon: Clock
+    title: 'Academic Excellence',
+    description: 'Dedicated teachers focused on KCPE preparation and success',
+    icon: Target
+  },
+  {
+    title: 'Co-curricular Activities',
+    description: 'Drama, music, swimming, French, and computer classes',
+    icon: Music
+  },
+  {
+    title: 'Character Development',
+    description: 'Christian values, discipline, and patriotism integrated daily',
+    icon: Award
   }
 ];
 
 export default function Academics() {
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <img 
-            src="https://res.cloudinary.com/westgate-school/image/upload/v1/academics/hero-academics.jpg" 
-            alt="Academics"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
-        
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+    <div className="min-h-screen pt-20">
+      {/* Header Section */}
+      <section className="py-8 md:py-12 bg-gradient-to-br from-primary-red/5 via-white to-gold/5">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
           <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-gold font-medium text-sm tracking-wide uppercase mb-4 md:text-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
           >
-            Academics
-          </motion.div>
-          
-          <motion.h1
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-white font-display font-bold text-3xl leading-tight mb-6 md:text-6xl"
-          >
-            Excellence in
-            <span className="block text-gold">Academic Achievement</span>
-          </motion.h1>
-          
-          <motion.p
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-white/90 text-lg leading-relaxed max-w-2xl mx-auto mb-8 md:text-xl"
-          >
-            Our rigorous Cambridge curriculum, combined with innovative teaching methods and 
-            world-class facilities, prepares students for success in higher education and beyond.
-          </motion.p>
-          
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            <Button size="lg" className="bg-gold hover:bg-yellow-600 text-charcoal-black font-semibold">
-              Explore Our Programs
-            </Button>
+            <div className="text-primary-red font-medium text-sm md:text-base tracking-wide uppercase mb-3">
+              Academic Excellence
+            </div>
+            <h1 className="font-display font-bold text-2xl md:text-4xl lg:text-5xl text-charcoal-black mb-4">
+              Quality Education for
+              <span className="block text-primary-red">Future Leaders</span>
+            </h1>
+            <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+              Our Competency Based Curriculum (CBC) from Playgroup to Grade 6 ensures academic excellence, 
+              character development, and holistic growth in a Christian environment.
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Cambridge Curricula */}
-      <section className="py-16 bg-white md:py-24">
+      {/* Academic Programs - Compact */}
+      <section className="py-8 md:py-12 bg-white">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16 md:mb-20"
+            className="text-center mb-8"
           >
-            <h2 className="font-display font-bold text-3xl text-charcoal-black mb-6 md:text-4xl">
-              Cambridge International Curricula
+            <h2 className="font-display font-bold text-xl md:text-2xl text-charcoal-black mb-2">
+              Our Academic Programmes
             </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              World-class education programs designed to develop critical thinking, 
-              creativity, and global awareness
+            <p className="text-gray-600 text-sm md:text-base">
+              Comprehensive CBC education from early childhood to Grade 6
             </p>
           </motion.div>
 
-          <div className="space-y-16 md:space-y-24">
+          <div className="grid gap-6 lg:gap-8">
             {curricula.map((curriculum, index) => (
               <motion.div
                 key={curriculum.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`grid gap-8 lg:grid-cols-2 lg:gap-16 items-center ${
-                  index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
-                }`}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className={index % 2 === 1 ? 'lg:col-start-2' : ''}>
-                  <div className="text-primary-red font-semibold mb-2">
-                    {curriculum.ageRange}
-                  </div>
-                  <h3 className="font-display font-bold text-2xl text-charcoal-black mb-4 md:text-3xl">
-                    {curriculum.title}
-                  </h3>
-                  <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                    {curriculum.description}
-                  </p>
-                  
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-charcoal-black mb-3">Key Subjects:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {curriculum.subjects.map((subject) => (
-                        <span 
-                          key={subject}
-                          className="bg-primary-red/10 text-primary-red px-3 py-1 rounded-full text-sm font-medium"
-                        >
-                          {subject}
-                        </span>
-                      ))}
+                <Card padding="lg" className="bg-white border-l-4 border-primary-red hover:shadow-lg transition-shadow duration-300">
+                  <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
+                    {/* Content */}
+                    <div className="lg:col-span-2">
+                      <div className="mb-4">
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="text-primary-red font-semibold text-sm bg-primary-red/10 px-3 py-1 rounded-full">
+                            {curriculum.ageRange}
+                          </span>
+                        </div>
+                        <h3 className="font-display font-bold text-lg md:text-xl text-charcoal-black mb-2">
+                          {curriculum.title}
+                        </h3>
+                        <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                          {curriculum.description}
+                        </p>
+                      </div>
+
+                      {/* Mobile: Highlights only */}
+                      <div className="block lg:hidden">
+                        <h4 className="font-semibold text-charcoal-black text-sm mb-2">Key Features:</h4>
+                        <div className="grid gap-2 grid-cols-1 sm:grid-cols-2">
+                          {curriculum.highlights.map((highlight, i) => (
+                            <div key={i} className="flex items-start">
+                              <div className="w-1.5 h-1.5 bg-primary-red rounded-full mt-2 mr-2 flex-shrink-0" />
+                              <span className="text-gray-600 text-xs">{highlight}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Desktop: Full details */}
+                      <div className="hidden lg:block space-y-4">
+                        {/* Subjects */}
+                        <div>
+                          <h4 className="font-semibold text-charcoal-black text-sm mb-2">Key Subjects:</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {curriculum.subjects.slice(0, 4).map((subject) => (
+                              <span 
+                                key={subject}
+                                className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-md"
+                              >
+                                {subject}
+                              </span>
+                            ))}
+                            {curriculum.subjects.length > 4 && (
+                              <span className="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded-md">
+                                +{curriculum.subjects.length - 4} more
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Highlights */}
+                        <div>
+                          <h4 className="font-semibold text-charcoal-black text-sm mb-2">Programme Highlights:</h4>
+                          <div className="grid gap-2 grid-cols-2">
+                            {curriculum.highlights.map((highlight, i) => (
+                              <div key={i} className="flex items-start">
+                                <div className="w-1.5 h-1.5 bg-primary-red rounded-full mt-2 mr-2 flex-shrink-0" />
+                                <span className="text-gray-600 text-sm">{highlight}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Icon/Visual */}
+                    <div className="flex items-center justify-center lg:justify-end">
+                      <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-primary-red/10 to-gold/10 rounded-2xl flex items-center justify-center">
+                        <BookOpen className="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 text-primary-red" />
+                      </div>
                     </div>
                   </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-charcoal-black mb-3">Program Highlights:</h4>
-                    <ul className="space-y-2">
-                      {curriculum.highlights.map((highlight, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <div className="w-2 h-2 bg-primary-red rounded-full mt-2 flex-shrink-0" />
-                          <span className="text-gray-600">{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                
-                <div className={index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}>
-                  <img 
-                    src={curriculum.image} 
-                    alt={curriculum.title}
-                    className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-lg"
-                  />
-                </div>
+                </Card>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Academic Departments */}
-      <section className="py-16 bg-neutral-light md:py-24">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
+      {/* Academic Departments & Achievements Combined */}
+      <section className="py-8 md:py-12 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+          
+          {/* Departments - Compact Grid */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16 md:mb-20"
+            transition={{ duration: 0.5 }}
+            className="mb-8 md:mb-12"
           >
-            <h2 className="font-display font-bold text-3xl text-charcoal-black mb-6 md:text-4xl">
-              Academic Departments
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Specialized departments with expert faculty and modern facilities
-            </p>
+            <div className="text-center mb-6">
+              <h2 className="font-display font-bold text-xl md:text-2xl text-charcoal-black mb-2">
+                Academic Departments
+              </h2>
+              <p className="text-gray-600 text-sm md:text-base">
+                Specialized teaching areas with dedicated facilities
+              </p>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {departments.slice(0, 5).map((dept, index) => {
+                const Icon = dept.icon;
+                return (
+                  <motion.div
+                    key={dept.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                  >
+                    <Card padding="md" className="h-full bg-white hover:shadow-lg transition-shadow duration-300">
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 bg-primary-red/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <Icon className="h-6 w-6 text-primary-red" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-display font-semibold text-base text-charcoal-black mb-1">
+                            {dept.name}
+                          </h3>
+                          <p className="text-gray-600 text-xs md:text-sm leading-relaxed mb-2">
+                            {dept.description}
+                          </p>
+                          <div className="flex flex-wrap gap-1">
+                            {dept.subjects.slice(0, 2).map((subject) => (
+                              <span 
+                                key={subject}
+                                className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs"
+                              >
+                                {subject}
+                              </span>
+                            ))}
+                            {dept.subjects.length > 2 && (
+                              <span className="bg-gray-100 text-gray-500 px-2 py-1 rounded text-xs">
+                                +{dept.subjects.length - 2}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </Card>
+                  </motion.div>
+                );
+              })}
+            </div>
           </motion.div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
-            {departments.map((dept, index) => {
-              const Icon = dept.icon;
-              return (
-                <motion.div
-                  key={dept.name}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                >
-                  <Card padding="lg" className="h-full hover:shadow-xl transition-all duration-300">
-                    <div className="text-center mb-6">
-                      <div className="w-16 h-16 bg-primary-red/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <Icon className="h-8 w-8 text-primary-red" />
-                      </div>
-                      <h3 className="font-display font-bold text-xl text-charcoal-black">
-                        {dept.name}
+          {/* Achievements - Stats Grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div className="text-center mb-6">
+              <h2 className="font-display font-bold text-xl md:text-2xl text-charcoal-black mb-2">
+                Academic Excellence
+              </h2>
+              <p className="text-gray-600 text-sm md:text-base">
+                Outstanding performance and achievements
+              </p>
+            </div>
+
+            <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
+              {achievements.map((achievement, index) => {
+                const Icon = achievement.icon;
+                return (
+                  <motion.div
+                    key={achievement.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                  >
+                    <Card padding="md" className="text-center bg-white hover:shadow-lg transition-shadow duration-300 h-full">
+                      <Icon className="h-8 w-8 md:h-10 md:w-10 text-primary-red mx-auto mb-3" />
+                      <h3 className="font-display font-bold text-sm md:text-base text-charcoal-black mb-2">
+                        {achievement.title}
                       </h3>
-                    </div>
-                    
-                    <p className="text-gray-600 leading-relaxed mb-6">
-                      {dept.description}
-                    </p>
-                    
-                    <div className="mb-6">
-                      <h4 className="font-semibold text-charcoal-black mb-3">Subjects:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {dept.subjects.map((subject) => (
-                          <span 
-                            key={subject}
-                            className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-sm"
-                          >
-                            {subject}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h4 className="font-semibold text-charcoal-black mb-3">Facilities:</h4>
-                      <ul className="space-y-1">
-                        {dept.facilities.map((facility, idx) => (
-                          <li key={idx} className="text-gray-600 text-sm flex items-start gap-2">
-                            <div className="w-1 h-1 bg-primary-red rounded-full mt-2 flex-shrink-0" />
-                            {facility}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </Card>
-                </motion.div>
-              );
-            })}
-          </div>
+                      <p className="text-gray-600 text-xs md:text-sm leading-relaxed">
+                        {achievement.description}
+                      </p>
+                    </Card>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Academic Achievements */}
-      <section className="py-16 bg-white md:py-24">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
+      {/* Support Services - Compact */}
+      <section className="py-8 md:py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16 md:mb-20"
+            transition={{ duration: 0.5 }}
+            className="text-center mb-8"
           >
-            <h2 className="font-display font-bold text-3xl text-charcoal-black mb-6 md:text-4xl">
-              Academic Excellence
+            <h2 className="font-display font-bold text-xl md:text-2xl text-charcoal-black mb-2">
+              Why Choose Westgate Shield
             </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Our commitment to excellence is reflected in outstanding academic results
+            <p className="text-gray-600 text-sm md:text-base">
+              Comprehensive support for every child's success
             </p>
           </motion.div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 md:gap-6">
-            {achievements.map((achievement, index) => {
-              const Icon = achievement.icon;
-              return (
-                <motion.div
-                  key={achievement.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="w-20 h-20 bg-primary-red rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className="h-10 w-10 text-white" />
-                  </div>
-                  <h3 className="font-display font-bold text-xl text-charcoal-black mb-3">
-                    {achievement.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {achievement.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Support Services */}
-      <section className="py-16 bg-neutral-light md:py-24">
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16 md:mb-20"
-          >
-            <h2 className="font-display font-bold text-3xl text-charcoal-black mb-6 md:text-4xl">
-              Academic Support Services
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Comprehensive support to ensure every student reaches their full potential
-            </p>
-          </motion.div>
-
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 md:gap-6">
+          <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
             {supportServices.map((service, index) => {
               const Icon = service.icon;
               return (
                 <motion.div
                   key={service.title}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
                 >
-                  <Card padding="lg" className="h-full text-center hover:shadow-lg transition-all duration-300">
-                    <div className="w-16 h-16 bg-primary-red/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <Icon className="h-8 w-8 text-primary-red" />
-                    </div>
-                    <h3 className="font-display font-semibold text-lg text-charcoal-black mb-3">
+                  <Card padding="md" className="h-full text-center bg-white hover:shadow-lg transition-shadow duration-300 border-t-4 border-primary-red">
+                    <Icon className="h-8 w-8 md:h-10 md:w-10 text-primary-red mx-auto mb-3" />
+                    <h3 className="font-display font-semibold text-sm md:text-base text-charcoal-black mb-2">
                       {service.title}
                     </h3>
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-gray-600 text-xs md:text-sm leading-relaxed">
                       {service.description}
                     </p>
                   </Card>
@@ -462,31 +448,32 @@ export default function Academics() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-primary-red to-burgundy-deep md:py-24">
+      {/* CTA Section - Compact */}
+      <section className="py-6 md:py-8 bg-gradient-to-r from-primary-red to-burgundy-deep">
         <div className="max-w-4xl mx-auto text-center px-4 md:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
-            <h2 className="font-display font-bold text-3xl text-white mb-6 md:text-4xl">
-              Discover Academic Excellence
+            <h2 className="font-display font-bold text-xl md:text-2xl text-white mb-3 md:mb-4">
+              Experience Academic Excellence
             </h2>
-            <p className="text-white/90 text-lg leading-relaxed mb-8 md:text-xl">
-              Experience our world-class academic programs firsthand. Schedule a visit 
-              to see our facilities and meet our expert faculty.
+            <p className="text-white/90 text-sm md:text-base leading-relaxed mb-6">
+              Discover our comprehensive CBC curriculum and see why we're a top choice for primary education in Kabete Sub-county.
             </p>
-            <div className="flex flex-col gap-4 max-w-md mx-auto md:flex-row md:max-w-none md:justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-sm sm:max-w-none mx-auto">
               <Link href="/contact">
-                <Button size="lg" variant="secondary" className="font-semibold">
+                <Button size="md" variant="secondary" className="font-semibold w-full sm:w-auto">
                   Schedule Academic Tour
                 </Button>
               </Link>
-              <Button size="lg" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-charcoal-black font-semibold">
-                Download Curriculum Guide
-              </Button>
+              <Link href="/admissions">
+                <Button size="md" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-charcoal-black font-semibold w-full sm:w-auto">
+                  Apply Now
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>
