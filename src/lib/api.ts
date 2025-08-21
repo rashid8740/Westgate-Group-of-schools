@@ -35,9 +35,9 @@ async function apiRequest<T>(
 
   const url = `${API_BASE_URL}${endpoint}`;
   
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-    ...options.headers,
+    ...(options.headers as Record<string, string> || {}),
   };
 
   // Add authorization header if token exists and auth is required
@@ -325,7 +325,7 @@ export const galleryApi = {
 
   upload: async (formData: FormData) => {
     const token = tokenManager.getToken();
-    const headers: HeadersInit = {};
+    const headers: Record<string, string> = {};
     
     if (token) {
       headers.Authorization = `Bearer ${token}`;
