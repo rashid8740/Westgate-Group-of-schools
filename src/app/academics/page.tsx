@@ -216,15 +216,15 @@ export default function Academics() {
                       <div className="mb-4">
                         <div className="flex items-center gap-3 mb-2">
                           <span className="text-primary-red font-semibold text-sm bg-primary-red/10 px-3 py-1 rounded-full">
-                            {curriculum.ageRange}
+                    {curriculum.ageRange}
                           </span>
-                        </div>
+                  </div>
                         <h3 className="font-display font-bold text-lg md:text-xl text-charcoal-black mb-2">
-                          {curriculum.title}
-                        </h3>
+                    {curriculum.title}
+                  </h3>
                         <p className="text-gray-600 text-sm md:text-base leading-relaxed">
-                          {curriculum.description}
-                        </p>
+                    {curriculum.description}
+                  </p>
                       </div>
 
                       {/* Mobile: Highlights only */}
@@ -245,25 +245,25 @@ export default function Academics() {
                         {/* Subjects */}
                         <div>
                           <h4 className="font-semibold text-charcoal-black text-sm mb-2">Key Subjects:</h4>
-                          <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2">
                             {curriculum.subjects.slice(0, 4).map((subject) => (
-                              <span 
-                                key={subject}
+                        <span 
+                          key={subject}
                                 className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-md"
-                              >
-                                {subject}
-                              </span>
-                            ))}
+                        >
+                          {subject}
+                        </span>
+                      ))}
                             {curriculum.subjects.length > 4 && (
                               <span className="px-2 py-1 bg-gray-100 text-gray-500 text-xs rounded-md">
                                 +{curriculum.subjects.length - 4} more
                               </span>
                             )}
-                          </div>
-                        </div>
-
+                    </div>
+                  </div>
+                  
                         {/* Highlights */}
-                        <div>
+                  <div>
                           <h4 className="font-semibold text-charcoal-black text-sm mb-2">Programme Highlights:</h4>
                           <div className="grid gap-2 grid-cols-2">
                             {curriculum.highlights.map((highlight, i) => (
@@ -274,16 +274,16 @@ export default function Academics() {
                             ))}
                           </div>
                         </div>
-                      </div>
-                    </div>
-
+                  </div>
+                </div>
+                
                     {/* Icon/Visual */}
                     <div className="flex items-center justify-center lg:justify-end">
                       <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-gradient-to-br from-primary-red/10 to-gold/10 rounded-2xl flex items-center justify-center">
                         <BookOpen className="h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14 text-primary-red" />
                       </div>
                     </div>
-                  </div>
+                </div>
                 </Card>
               </motion.div>
             ))}
@@ -305,58 +305,58 @@ export default function Academics() {
           >
             <div className="text-center mb-6">
               <h2 className="font-display font-bold text-xl md:text-2xl text-charcoal-black mb-2">
-                Academic Departments
-              </h2>
+              Academic Departments
+            </h2>
               <p className="text-gray-600 text-sm md:text-base">
                 Specialized teaching areas with dedicated facilities
-              </p>
+            </p>
             </div>
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {departments.slice(0, 5).map((dept, index) => {
-                const Icon = dept.icon;
-                return (
-                  <motion.div
-                    key={dept.name}
+              const Icon = dept.icon;
+              return (
+                <motion.div
+                  key={dept.name}
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                   >
                     <Card padding="md" className="h-full bg-white hover:shadow-lg transition-shadow duration-300">
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 bg-primary-red/10 rounded-xl flex items-center justify-center flex-shrink-0">
                           <Icon className="h-6 w-6 text-primary-red" />
-                        </div>
+                      </div>
                         <div className="flex-1">
                           <h3 className="font-display font-semibold text-base text-charcoal-black mb-1">
-                            {dept.name}
-                          </h3>
+                        {dept.name}
+                      </h3>
                           <p className="text-gray-600 text-xs md:text-sm leading-relaxed mb-2">
-                            {dept.description}
-                          </p>
+                      {dept.description}
+                    </p>
                           <div className="flex flex-wrap gap-1">
                             {dept.subjects.slice(0, 2).map((subject) => (
-                              <span 
-                                key={subject}
+                          <span 
+                            key={subject}
                                 className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs"
-                              >
-                                {subject}
-                              </span>
-                            ))}
+                          >
+                            {subject}
+                          </span>
+                        ))}
                             {dept.subjects.length > 2 && (
                               <span className="bg-gray-100 text-gray-500 px-2 py-1 rounded text-xs">
                                 +{dept.subjects.length - 2}
                               </span>
                             )}
-                          </div>
-                        </div>
                       </div>
-                    </Card>
-                  </motion.div>
-                );
-              })}
-            </div>
+                    </div>
+                    </div>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
           </motion.div>
 
           {/* Achievements - Stats Grid */}
@@ -368,37 +368,37 @@ export default function Academics() {
           >
             <div className="text-center mb-6">
               <h2 className="font-display font-bold text-xl md:text-2xl text-charcoal-black mb-2">
-                Academic Excellence
-              </h2>
+              Academic Excellence
+            </h2>
               <p className="text-gray-600 text-sm md:text-base">
                 Outstanding performance and achievements
-              </p>
+            </p>
             </div>
 
             <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
-              {achievements.map((achievement, index) => {
-                const Icon = achievement.icon;
-                return (
-                  <motion.div
-                    key={achievement.title}
+            {achievements.map((achievement, index) => {
+              const Icon = achievement.icon;
+              return (
+                <motion.div
+                  key={achievement.title}
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                   >
                     <Card padding="md" className="text-center bg-white hover:shadow-lg transition-shadow duration-300 h-full">
                       <Icon className="h-8 w-8 md:h-10 md:w-10 text-primary-red mx-auto mb-3" />
                       <h3 className="font-display font-bold text-sm md:text-base text-charcoal-black mb-2">
-                        {achievement.title}
-                      </h3>
+                    {achievement.title}
+                  </h3>
                       <p className="text-gray-600 text-xs md:text-sm leading-relaxed">
-                        {achievement.description}
-                      </p>
+                    {achievement.description}
+                  </p>
                     </Card>
-                  </motion.div>
-                );
-              })}
-            </div>
+                </motion.div>
+              );
+            })}
+          </div>
           </motion.div>
         </div>
       </section>
@@ -466,13 +466,13 @@ export default function Academics() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-sm sm:max-w-none mx-auto">
               <Link href="/contact">
                 <Button size="md" variant="secondary" className="font-semibold w-full sm:w-auto">
-                  Schedule Academic Tour
-                </Button>
+                Schedule Academic Tour
+              </Button>
               </Link>
               <Link href="/admissions">
                 <Button size="md" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-charcoal-black font-semibold w-full sm:w-auto">
                   Apply Now
-                </Button>
+              </Button>
               </Link>
             </div>
           </motion.div>

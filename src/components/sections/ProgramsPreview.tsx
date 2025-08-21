@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Baby, GraduationCap, Trophy, ArrowRight } from 'lucide-react';
+import { Baby, GraduationCap, Trophy } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 
@@ -112,15 +112,7 @@ export const ProgramsPreview: React.FC = () => {
                       ))}
                     </div>
 
-                    {/* CTA */}
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      className="w-full text-sm group-hover:bg-primary-red group-hover:text-white group-hover:border-primary-red transition-all duration-300 md:size-md"
-                    >
-                      Learn More
-                      <ArrowRight className="h-3 w-3 ml-2 group-hover:translate-x-1 transition-transform duration-300 md:h-4 md:w-4" />
-                    </Button>
+
                   </div>
                 </Card>
               </motion.div>

@@ -70,7 +70,7 @@ export default function About() {
               About Westgate Shield Primary School
             </div>
             <h1 className="font-display font-bold text-2xl md:text-4xl lg:text-5xl text-charcoal-black mb-4">
-              Shaping Future Leaders
+            Shaping Future Leaders
               <span className="block text-primary-red">Since Early 1990s</span>
             </h1>
             <p className="text-gray-600 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
@@ -90,89 +90,89 @@ export default function About() {
             
             {/* Mission & Vision Row */}
             <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
-              <motion.div
+            <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
                 <Card padding="lg" className="h-full bg-primary-red/5 border-primary-red/10">
                   <div className="flex items-center mb-4">
                     <Target className="h-6 w-6 text-primary-red mr-3" />
                     <h2 className="font-display font-bold text-xl md:text-2xl text-charcoal-black">
-                      Our Mission
-                    </h2>
-                  </div>
+                  Our Mission
+                </h2>
+              </div>
                   <p className="text-gray-700 leading-relaxed">
                     To provide quality Christian-based education that develops academic excellence, 
                     strong character, and holistic growth, preparing students for success in secondary school and beyond.
                   </p>
                 </Card>
-              </motion.div>
-              
-              <motion.div
+            </motion.div>
+            
+            <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
                 <Card padding="lg" className="h-full bg-gold/5 border-gold/20">
                   <div className="flex items-center mb-4">
                     <Eye className="h-6 w-6 text-primary-red mr-3" />
                     <h2 className="font-display font-bold text-xl md:text-2xl text-charcoal-black">
-                      Our Vision
-                    </h2>
-                  </div>
+                  Our Vision
+                </h2>
+              </div>
                   <p className="text-gray-700 leading-relaxed">
                     To be the leading primary school in Kabete Sub-county, recognized for KCPE excellence, 
                     character development, and nurturing future leaders with Christian values.
                   </p>
                 </Card>
-              </motion.div>
-            </div>
+            </motion.div>
+          </div>
 
             {/* Core Values Section */}
-            <motion.div
+          <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="mt-4"
-            >
+          >
               <div className="text-center mb-6">
                 <h2 className="font-display font-bold text-xl md:text-2xl text-charcoal-black mb-2">
-                  Our Core Values
-                </h2>
+              Our Core Values
+            </h2>
                 <p className="text-gray-600 text-sm md:text-base">
                   The principles that guide everything we do
-                </p>
+            </p>
               </div>
 
               <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
-                {values.map((value, index) => {
-                  const Icon = value.icon;
-                  return (
-                    <motion.div
-                      key={value.title}
+            {values.map((value, index) => {
+              const Icon = value.icon;
+              return (
+                <motion.div
+                  key={value.title}
                       initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                     >
                       <Card padding="md" className="h-full text-center hover:shadow-lg transition-all duration-300 bg-white border-gray-100">
                         <div className="w-12 h-12 md:w-14 md:h-14 bg-primary-red/10 rounded-xl flex items-center justify-center mx-auto mb-3">
                           <Icon className="h-6 w-6 md:h-7 md:w-7 text-primary-red" />
-                        </div>
+                    </div>
                         <h3 className="font-display font-semibold text-sm md:text-base text-charcoal-black mb-2">
-                          {value.title}
-                        </h3>
+                      {value.title}
+                    </h3>
                         <p className="text-gray-600 text-xs md:text-sm leading-relaxed">
-                          {value.description}
-                        </p>
-                      </Card>
-                    </motion.div>
-                  );
-                })}
+                      {value.description}
+                    </p>
+                  </Card>
+                </motion.div>
+              );
+            })}
               </div>
             </motion.div>
           </div>
@@ -194,38 +194,38 @@ export default function About() {
             <div className="text-center mb-6">
               <h2 className="font-display font-bold text-xl md:text-2xl text-charcoal-black mb-2">
                 Our Founders
-              </h2>
+            </h2>
               <p className="text-gray-600 text-sm md:text-base">
                 The visionary leaders who established our school
-              </p>
+            </p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
-              {leadership.map((leader, index) => (
-                <motion.div
-                  key={leader.name}
+            {leadership.map((leader, index) => (
+              <motion.div
+                key={leader.name}
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Card padding="lg" className="text-center h-full bg-white">
                     <div className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary-red/10 to-gold/10 flex items-center justify-center">
                       <Users className="h-10 w-10 md:h-12 md:w-12 text-primary-red" />
-                    </div>
+                </div>
                     <h3 className="font-display font-bold text-lg md:text-xl text-charcoal-black mb-1">
-                      {leader.name}
-                    </h3>
+                  {leader.name}
+                </h3>
                     <p className="text-primary-red font-semibold text-sm md:text-base mb-3">
-                      {leader.role}
-                    </p>
+                  {leader.role}
+                </p>
                     <p className="text-gray-600 text-sm md:text-base leading-relaxed">
-                      {leader.bio}
-                    </p>
+                  {leader.bio}
+                </p>
                   </Card>
-                </motion.div>
-              ))}
-            </div>
+              </motion.div>
+            ))}
+          </div>
           </motion.div>
 
           {/* Our Journey - Compact Timeline */}
@@ -237,37 +237,37 @@ export default function About() {
           >
             <div className="text-center mb-6">
               <h2 className="font-display font-bold text-xl md:text-2xl text-charcoal-black mb-2">
-                Our Journey
-              </h2>
+              Our Journey
+            </h2>
               <p className="text-gray-600 text-sm md:text-base">
                 Key milestones in our educational excellence
-              </p>
+            </p>
             </div>
 
             {/* Mobile: Vertical Cards */}
             <div className="block md:hidden space-y-4">
-              {milestones.map((milestone, index) => (
-                <motion.div
+            {milestones.map((milestone, index) => (
+              <motion.div
                   key={`${milestone.year}-${milestone.event}`}
                   initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                >
+              >
                   <Card padding="md" className="bg-white border-l-4 border-primary-red">
                     <div className="text-primary-red font-bold text-sm mb-1">
-                      {milestone.year}
-                    </div>
+                    {milestone.year}
+                  </div>
                     <h3 className="font-display font-semibold text-base text-charcoal-black mb-2">
-                      {milestone.event}
-                    </h3>
+                    {milestone.event}
+                  </h3>
                     <p className="text-gray-600 text-sm leading-relaxed">
-                      {milestone.description}
-                    </p>
+                    {milestone.description}
+                  </p>
                   </Card>
                 </motion.div>
               ))}
-            </div>
+                </div>
 
             {/* Desktop: Grid Layout */}
             <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
@@ -282,7 +282,7 @@ export default function About() {
                   <Card padding="lg" className="h-full bg-white hover:shadow-lg transition-shadow duration-300 border-t-4 border-primary-red">
                     <div className="text-primary-red font-bold text-base mb-2">
                       {milestone.year}
-                    </div>
+                </div>
                     <h3 className="font-display font-semibold text-lg text-charcoal-black mb-3">
                       {milestone.event}
                     </h3>
@@ -290,9 +290,9 @@ export default function About() {
                       {milestone.description}
                     </p>
                   </Card>
-                </motion.div>
-              ))}
-            </div>
+              </motion.div>
+            ))}
+          </div>
           </motion.div>
         </div>
       </section>
@@ -315,13 +315,13 @@ export default function About() {
             <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-sm sm:max-w-none mx-auto">
               <Link href="/contact">
                 <Button size="md" variant="secondary" className="font-semibold w-full sm:w-auto">
-                  Schedule a Tour
-                </Button>
+                Schedule a Tour
+              </Button>
               </Link>
               <Link href="/admissions">
                 <Button size="md" variant="outline" className="bg-white/10 border-white text-white hover:bg-white hover:text-charcoal-black font-semibold w-full sm:w-auto">
                   Apply Now
-                </Button>
+              </Button>
               </Link>
             </div>
           </motion.div>

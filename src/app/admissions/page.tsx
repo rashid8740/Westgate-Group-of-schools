@@ -313,7 +313,7 @@ export default function Admissions() {
   return (
     <div className="min-h-screen">
       {/* Admission Process Hero */}
-      <section className="relative min-h-screen bg-gradient-to-br from-primary-red via-burgundy-deep to-charcoal-black overflow-hidden pt-20 pb-16 md:pt-24 md:pb-20">
+      <section className="relative min-h-screen bg-gradient-to-br from-primary-red via-burgundy-deep to-charcoal-black overflow-hidden pt-10 pb-16 md:pt-24 md:pb-20">
         {/* Background Pattern */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
