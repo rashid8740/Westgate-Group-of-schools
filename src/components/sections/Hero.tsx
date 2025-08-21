@@ -95,20 +95,6 @@ export const Hero: React.FC = () => {
               <div className="relative z-10 h-full flex items-center justify-center">
                 {/* Mobile Layout */}
                 <div className="w-full px-6 py-12 max-w-sm mx-auto text-center md:hidden">
-                  {/* School Logo */}
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm"
-                  >
-                    <img 
-                      src="/images/logo/header.png" 
-                      alt="Westgate Shield Primary School Logo" 
-                      className="w-12 h-12 object-contain"
-                    />
-                  </motion.div>
-                  
                   {/* Mobile Headlines */}
                   <motion.div
                     initial={{ y: 30, opacity: 0 }}

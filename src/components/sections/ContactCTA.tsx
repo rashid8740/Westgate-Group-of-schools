@@ -12,24 +12,24 @@ const contactMethods = [
     icon: Phone,
     title: 'Call Us',
     description: 'Speak directly with our admissions team',
-    action: '+254 722 000 000',
-    href: 'tel:+254722000000',
+    action: '+254 722 826 428',
+    href: 'tel:+254722826428',
     color: 'from-blue-500 to-blue-600'
   },
   {
     icon: Mail,
     title: 'Email Us',
     description: 'Send us your questions and inquiries',
-    action: 'info@westgateschool.ac.ke',
-    href: 'mailto:info@westgateschool.ac.ke',
+    action: 'josphinewothaya@gmail.com',
+    href: 'mailto:josphinewothaya@gmail.com',
     color: 'from-green-500 to-green-600'
   },
   {
     icon: MapPin,
     title: 'Visit Us',
     description: 'Schedule a campus tour and see our facilities',
-    action: 'Book School Tour',
-    href: '/contact',
+    action: 'View on Google Maps',
+    href: 'https://www.google.com/maps/place/Westgate+Group+of+Schools+-+Muthiga/@-1.2506806,36.6857624,17z/data=!4m14!1m7!3m6!1s0x182f1f19b2608883:0x1889d347bd97f087!2sWestgate+Group+of+Schools+-+Muthiga!8m2!3d-1.2506806!4d36.6883373!16s%2Fg%2F11pzr67fmm!3m5!1s0x182f1f19b2608883:0x1889d347bd97f087!8m2!3d-1.2506806!4d36.6883373!16s%2Fg%2F11pzr67fmm?entry=ttu&g_ep=EgoyMDI1MDgxOC4wIKXMDSoASAFQAw%3D%3D',
     color: 'from-purple-500 to-purple-600'
   }
 ];
@@ -55,7 +55,7 @@ const quickActions = [
 
 export const ContactCTA: React.FC = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-neutral-light via-white to-neutral-light">
+    <section className="py-8 md:py-20 bg-gradient-to-br from-neutral-light via-white to-neutral-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -64,18 +64,18 @@ export const ContactCTA: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
-          <div className="text-primary-red font-medium text-lg mb-4">
+          <div className="text-primary-red font-medium text-sm md:text-lg mb-2 md:mb-4">
             Ready to Begin?
           </div>
           
-          <h2 className="font-display font-bold text-4xl md:text-5xl text-charcoal-black mb-6">
+          <h2 className="font-display font-bold text-2xl md:text-4xl lg:text-5xl text-charcoal-black mb-4 md:mb-6">
             Take the Next 
             <span className="text-primary-red"> Step</span>
           </h2>
           
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-xl text-gray-600 max-w-2xl md:max-w-3xl mx-auto leading-relaxed">
             Join the Westgate family and give your child the foundation for a bright future. 
             Our admissions team is here to guide you through the process.
           </p>
@@ -87,7 +87,7 @@ export const ContactCTA: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-16"
         >
           {contactMethods.map((method, index) => {
             const Icon = method.icon;
@@ -99,25 +99,25 @@ export const ContactCTA: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card hover padding="lg" className="text-center h-full group cursor-pointer">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${method.color} rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <Icon className="h-8 w-8 text-white" />
+                <Card hover padding="md" className="text-center h-full group cursor-pointer">
+                  <div className={`w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br ${method.color} rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                    <Icon className="h-6 w-6 md:h-8 md:w-8 text-white" />
                   </div>
                   
-                  <h3 className="font-display font-semibold text-xl text-charcoal-black mb-3">
+                  <h3 className="font-display font-semibold text-lg md:text-xl text-charcoal-black mb-2 md:mb-3">
                     {method.title}
                   </h3>
                   
-                  <p className="text-gray-600 mb-4 leading-relaxed">
+                  <p className="text-gray-600 text-sm md:text-base mb-3 md:mb-4 leading-relaxed">
                     {method.description}
                   </p>
                   
                   <a
                     href={method.href}
-                    className="text-primary-red font-semibold hover:text-burgundy-deep transition-colors inline-flex items-center"
+                    className="text-primary-red font-semibold hover:text-burgundy-deep transition-colors inline-flex items-center text-sm md:text-base"
                   >
                     {method.action}
-                    <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
+                    <ArrowRight className="h-3 w-3 md:h-4 md:w-4 ml-1 group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
                 </Card>
               </motion.div>
@@ -131,7 +131,7 @@ export const ContactCTA: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-8 md:mb-16"
         >
           {quickActions.map((action, index) => {
             const Icon = action.icon;
@@ -143,25 +143,25 @@ export const ContactCTA: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <Card padding="lg" className="h-full">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-primary-red/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon className="h-6 w-6 text-primary-red" />
+                <Card padding="md" className="h-full">
+                  <div className="flex items-start space-x-3 md:space-x-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-primary-red/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon className="h-5 w-5 md:h-6 md:w-6 text-primary-red" />
                     </div>
                     
                     <div className="flex-1">
-                      <h3 className="font-display font-semibold text-xl text-charcoal-black mb-2">
+                      <h3 className="font-display font-semibold text-lg md:text-xl text-charcoal-black mb-2">
                         {action.title}
                       </h3>
                       
-                      <p className="text-gray-600 mb-4 leading-relaxed">
+                      <p className="text-gray-600 text-sm md:text-base mb-3 md:mb-4 leading-relaxed">
                         {action.description}
                       </p>
                       
                       <Link href={action.href}>
-                        <Button variant={action.variant} size="lg" className="w-full sm:w-auto">
+                        <Button variant={action.variant} size="md" className="w-full sm:w-auto">
                           {action.buttonText}
-                          <ArrowRight className="h-5 w-5 ml-2" />
+                          <ArrowRight className="h-4 w-4 md:h-5 md:w-5 ml-2" />
                         </Button>
                       </Link>
                     </div>
@@ -215,20 +215,43 @@ export const ContactCTA: React.FC = () => {
                 </div>
               </div>
               
-              <Button variant="secondary" size="lg">
-                Get Directions
-                <ArrowRight className="h-5 w-5 ml-2" />
-              </Button>
+              <a 
+                href="https://www.google.com/maps/place/Westgate+Group+of+Schools+-+Muthiga/@-1.2506806,36.6857624,17z/data=!4m14!1m7!3m6!1s0x182f1f19b2608883:0x1889d347bd97f087!2sWestgate+Group+of+Schools+-+Muthiga!8m2!3d-1.2506806!4d36.6883373!16s%2Fg%2F11pzr67fmm!3m5!1s0x182f1f19b2608883:0x1889d347bd97f087!8m2!3d-1.2506806!4d36.6883373!16s%2Fg%2F11pzr67fmm?entry=ttu&g_ep=EgoyMDI1MDgxOC4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button variant="secondary" size="lg">
+                  Get Directions
+                  <ArrowRight className="h-5 w-5 ml-2" />
+                </Button>
+              </a>
             </div>
 
-            {/* Map Placeholder */}
-            <div className="bg-white/10 rounded-xl p-8 text-center backdrop-blur-sm">
-              <div className="w-full h-64 bg-white/20 rounded-lg flex items-center justify-center">
-                <div className="text-white/80">
-                  <MapPin className="h-12 w-12 mx-auto mb-4" />
-                  <div className="font-semibold">Interactive Map</div>
-                  <div className="text-sm opacity-75">Click to view in Google Maps</div>
-                </div>
+            {/* Interactive Google Maps */}
+            <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
+              <div className="w-full h-64 rounded-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.819123456789!2d36.6857624!3d-1.2506806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1f19b2608883%3A0x1889d347bd97f087!2sWestgate%20Group%20of%20Schools%20-%20Muthiga!5e0!3m2!1sen!2ske!4v1703123456789!5m2!1sen!2ske"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Westgate Shield Primary School Location"
+                  className="rounded-lg"
+                ></iframe>
+              </div>
+              <div className="text-center mt-3">
+                <a 
+                  href="https://www.google.com/maps/place/Westgate+Group+of+Schools+-+Muthiga/@-1.2506806,36.6857624,17z/data=!4m14!1m7!3m6!1s0x182f1f19b2608883:0x1889d347bd97f087!2sWestgate+Group+of+Schools+-+Muthiga!8m2!3d-1.2506806!4d36.6883373!16s%2Fg%2F11pzr67fmm!3m5!1s0x182f1f19b2608883:0x1889d347bd97f087!8m2!3d-1.2506806!4d36.6883373!16s%2Fg%2F11pzr67fmm?entry=ttu&g_ep=EgoyMDI1MDgxOC4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/80 hover:text-white text-sm font-medium transition-colors duration-300 inline-flex items-center gap-1"
+                >
+                  <MapPin className="h-4 w-4" />
+                  Open in Google Maps
+                </a>
               </div>
             </div>
           </div>
@@ -240,32 +263,32 @@ export const ContactCTA: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mt-16"
+          className="text-center mt-8 md:mt-16"
         >
-          <h3 className="font-display font-bold text-3xl text-charcoal-black mb-4">
+          <h3 className="font-display font-bold text-xl md:text-3xl text-charcoal-black mb-3 md:mb-4">
             Ready to Shape Your Child's Future?
           </h3>
           
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-sm md:text-xl text-gray-600 mb-6 md:mb-8 max-w-xl md:max-w-2xl mx-auto">
             Don't wait - exceptional education opportunities are limited. 
             Contact us today to begin your child's journey at Westgate.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
             <Link href="/admissions">
-              <Button size="xl" className="text-lg">
+              <Button size="lg" className="text-sm md:text-lg w-full sm:w-auto">
                 Apply Now
-                <ArrowRight className="h-5 w-5 ml-2" />
+                <ArrowRight className="h-4 w-4 md:h-5 md:w-5 ml-2" />
               </Button>
             </Link>
             <Link href="/contact">
-              <Button variant="outline" size="xl" className="text-lg">
+              <Button variant="outline" size="lg" className="text-sm md:text-lg w-full sm:w-auto">
                 Schedule Consultation
               </Button>
             </Link>
           </div>
           
-          <div className="mt-6 text-sm text-gray-500">
+          <div className="mt-4 md:mt-6 text-xs md:text-sm text-gray-500">
             Application deadline: March 31st, 2024
           </div>
         </motion.div>

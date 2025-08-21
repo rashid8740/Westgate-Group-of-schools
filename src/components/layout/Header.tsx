@@ -78,7 +78,7 @@ export const Header: React.FC = () => {
               </div>
               <div>
                 <div className="font-display font-bold text-lg md:text-xl text-charcoal-black">
-                  Westgate Shield
+                  Westgate Group of Schools
                 </div>
                 <div className="text-xs md:text-sm text-gray-600">Primary School</div>
               </div>
@@ -143,13 +143,13 @@ export const Header: React.FC = () => {
                     {item.name}
                   </Link>
                 ))}
-                <div className="pt-4 space-y-3">
-                  <Link href="/contact">
-                    <Button variant="outline" size="md" className="w-full">
+                <div className="pt-4 space-y-4">
+                  <Link href="/contact" className="block">
+                    <Button variant="outline" size="md" className="w-full mb-4">
                       Book Tour
                     </Button>
                   </Link>
-                  <Link href="/admissions">
+                  <Link href="/admissions" className="block">
                     <Button size="md" className="w-full">
                       Apply Now
                     </Button>

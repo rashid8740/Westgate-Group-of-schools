@@ -8,37 +8,42 @@ const testimonials = [
   {
     id: 1,
     name: 'Grace Kimani',
-    role: 'Parent of Sarah Kimani (Class of 2023)',
-    content: 'Westgate has transformed my daughter into a confident, well-rounded young woman. The academic standards are exceptional and the teachers genuinely care about each student\'s success.',
-    achievement: 'Cambridge A-Level Excellence'
+    role: 'Parent of Sarah (Grade 4)',
+    content:
+      "The CBC approach at Westgate Shield has been wonderful for Sarah. She's more confident, creative, and engaged. The teachers give individual attention and communicate with us regularly.",
+    achievement: 'CBC Success & Individual Attention'
   },
   {
     id: 2,
     name: 'Dr. Faith Njeri',
-    role: 'Parent of Michael Njeri (Class of 2022)',
-    content: 'The rigorous academic program and dedicated teachers made this achievement possible. The school\'s commitment to excellence is evident in every aspect of education.',
-    achievement: 'University of Cambridge Admission'
+    role: 'Parent of Michael (Grade 6)',
+    content:
+      'Michael improved significantly in Mathematics and English through the structured CBC learning and revision clinics. We are proud of the KCPE-ready foundation the school provides.',
+    achievement: 'KCPE Preparation (Mean 355.8)'
   },
   {
     id: 3,
     name: 'John Mwangi',
-    role: 'Parent of David & Diana Mwangi',
-    content: 'The holistic approach to education is remarkable. Both my children have thrived academically and developed strong character under Westgate\'s guidance.',
-    achievement: 'Outstanding IGCSE Results'
+    role: 'Parent of David & Diana (Pre-Primary & Grade 2)',
+    content:
+      'Both our children love school. From early reading and numeracy to music, sports, and drama, the holistic program truly develops the whole child in a caring, Christian environment.',
+    achievement: 'Holistic Growth (Sports, Music, Drama)'
   },
   {
     id: 4,
-    name: 'Mrs. Catherine Wanjiku',
-    role: 'Parent of Emmanuel Wanjiku (Class of 2023)',
-    content: 'The international curriculum and world-class facilities have prepared my son exceptionally well for university. The support system is incredible.',
-    achievement: 'Top 1% Nationally'
+    name: 'Catherine Wanjiku',
+    role: 'Parent of Emmanuel (Grade 5)',
+    content:
+      'Discipline, strong Christian values, and consistent academic follow-up make a real difference here. Emmanuel has become more responsible and focused while still enjoying school.',
+    achievement: 'Discipline & Christian Values'
   },
   {
     id: 5,
-    name: 'Dr. James Mutua',
-    role: 'Parent of Patricia Mutua (Class of 2021)',
-    content: 'Westgate doesn\'t just educate students; it nurtures future leaders. The values instilled here will guide my daughter throughout her life.',
-    achievement: 'Harvard University Scholarship'
+    name: 'James Mutua',
+    role: 'Parent of Patricia (Grade 3)',
+    content:
+      'We chose Westgate Shield for its track record and it has delivered—small class sizes, caring teachers, and top performance in Kabete Sub-county. We highly recommend it to other parents.',
+    achievement: 'Top 3 in Kabete Sub-county'
   }
 ];
 
@@ -127,7 +132,7 @@ export const TestimonialsSection: React.FC = () => {
             What Parents Say
           </h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Trusted by families who have witnessed their children thrive in our nurturing environment.
+            Real feedback from families experiencing our CBC curriculum, Christian values, and holistic education—from Playgroup to Grade 6.
           </p>
         </motion.div>
 
