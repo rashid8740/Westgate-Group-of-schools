@@ -21,15 +21,13 @@ const quickLinks = [
   { name: 'Academics', href: '/academics' },
   { name: 'Admissions', href: '/admissions' },
   { name: 'Student Life', href: '/student-life' },
-  { name: 'News & Events', href: '/news' },
   { name: 'Contact Us', href: '/contact' },
 ];
 
 const programs = [
-  { name: 'Early Years (Nursery)', href: '/academics#early-years' },
-  { name: 'Primary School', href: '/academics#primary' },
-  { name: 'Secondary School', href: '/academics#secondary' },
-  { name: 'Cambridge IGCSE', href: '/academics#igcse' },
+  { name: 'Playgroup & Nursery', href: '/academics' },
+  { name: 'Pre-Primary', href: '/academics' },
+  { name: 'Primary School (CBC)', href: '/academics' },
 ];
 
 const socialLinks = [
@@ -49,7 +47,7 @@ export const Footer: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-4">Stay Connected</h3>
-            <p className="text-sm md:text-lg mb-4 md:mb-8 text-white/90">Get updates from Westgate Schools</p>
+            <p className="text-sm md:text-lg mb-4 md:mb-8 text-white/90">Get updates from Westgate Shield Primary School</p>
             <div className="max-w-md mx-auto flex flex-col sm:flex-row gap-3 sm:gap-4">
               <input
                 type="email"
@@ -77,11 +75,12 @@ export const Footer: React.FC = () => {
                   <span className="text-white font-bold text-lg">W</span>
                 </div>
                 <div>
-                  <div className="font-display font-bold text-lg">Westgate Schools</div>
+                  <div className="font-display font-bold text-lg">Westgate Shield</div>
+                  <div className="text-gray-400 text-sm">Primary School</div>
                 </div>
               </div>
               <p className="text-gray-300 text-sm mb-4 max-w-xs mx-auto">
-                Excellence in education and character development.
+                Excellence in primary education and character development.
               </p>
               <div className="flex justify-center space-x-3">
                 {socialLinks.map((social) => {
@@ -151,13 +150,13 @@ export const Footer: React.FC = () => {
                   <span className="text-white font-bold text-xl">W</span>
                 </div>
                 <div>
-                  <div className="font-display font-bold text-xl">Westgate</div>
-                  <div className="text-gray-400">Group of Schools</div>
+                  <div className="font-display font-bold text-xl">Westgate Shield</div>
+                  <div className="text-gray-400">Primary School</div>
                 </div>
               </div>
               <p className="text-gray-300 mb-6 leading-relaxed">
-                Nurturing tomorrow's leaders through excellence in education. 
-                A premier institution committed to academic excellence and character development.
+                Nurturing tomorrow's leaders through excellence in primary education. 
+                A premier Christian-based institution committed to academic excellence, character development, and holistic growth.
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map((social) => {
@@ -272,7 +271,7 @@ export const Footer: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
             <div className="text-gray-400 text-xs md:text-sm text-center md:text-left">
-              © {currentYear} Westgate Group of Schools. All rights reserved.
+              © {currentYear} Westgate Shield Primary School. All rights reserved.
             </div>
             <div className="flex flex-wrap justify-center space-x-4 md:space-x-6 text-xs md:text-sm">
               <Link href="/privacy" className="text-gray-400 hover:text-gold transition-colors">
