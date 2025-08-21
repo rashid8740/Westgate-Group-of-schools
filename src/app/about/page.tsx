@@ -50,7 +50,7 @@ const milestones = [
   { year: '1990s', event: 'Humble Beginnings', description: 'Started with classrooms built from garage, pupil recruitment by word of mouth' },
   { year: '2010-2020', event: 'Academic Excellence', description: 'Consistently ranked among top 3 schools in Kabete Sub-county' },
   { year: '2020', event: 'KCPE Achievement', description: 'Remarkable mean score of 355.8, top student scored 416 marks' },
-  { year: '2020', event: 'Strong Performance', description: 'Excellent results in English (75.1), Social Studies (72.3), Kiswahili (71.4)' },
+  { year: '2020', event: 'Subject Excellence', description: 'Excellent results in English (75.1), Social Studies (72.3), Kiswahili (71.4)' },
   { year: 'Present', event: '30+ Years of Excellence', description: 'Continuing to nurture future leaders with Christian values and holistic education' }
 ];
 
@@ -248,7 +248,7 @@ export default function About() {
             <div className="block md:hidden space-y-4">
               {milestones.map((milestone, index) => (
                 <motion.div
-                  key={milestone.year}
+                  key={`${milestone.year}-${milestone.event}`}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
@@ -273,7 +273,7 @@ export default function About() {
             <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
               {milestones.map((milestone, index) => (
                 <motion.div
-                  key={milestone.year}
+                  key={`${milestone.year}-${milestone.event}`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
