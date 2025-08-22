@@ -200,25 +200,27 @@ export default function AdminDashboard() {
     );
   }
 
+  const numberFormatter = new Intl.NumberFormat();
+
   const dashboardStats = [
     {
       name: 'Total Applications',
-      value: stats?.applications.total.toString() || '0',
-      pending: stats?.applications.pending || 0,
+      value: stats?.applications?.total ?? 0,
+      pending: stats?.applications?.pending ?? 0,
       icon: FileText,
       color: 'primary-red'
     },
     {
       name: 'Unread Messages',
-      value: stats?.messages.unread.toString() || '0',
-      total: stats?.messages.total || 0,
+      value: stats?.messages?.unread ?? 0,
+      total: stats?.messages?.total ?? 0,
       icon: MessageSquare,
       color: 'green-500'
     },
     {
       name: 'Gallery Images',
-      value: stats?.gallery.active.toString() || '0',
-      featured: stats?.gallery.featured || 0,
+      value: stats?.gallery?.active ?? 0,
+      featured: stats?.gallery?.featured ?? 0,
       icon: Images,
       color: 'blue-500'
     }
@@ -268,19 +270,19 @@ export default function AdminDashboard() {
                       </dt>
                       <dd className="flex items-baseline">
                         <div className="text-2xl font-semibold text-gray-900">
-                          {stat.value}
+                          {numberFormatter.format(stat.value as number)}
                         </div>
-                        {stat.pending && (
+                        {(stat.pending ?? 0) > 0 && (
                           <div className="ml-2 text-sm text-yellow-600">
                             ({stat.pending} pending)
                           </div>
                         )}
-                        {stat.total && (
+                        {(stat.total ?? 0) > 0 && (
                           <div className="ml-2 text-sm text-gray-500">
                             / {stat.total} total
                           </div>
                         )}
-                        {stat.featured && (
+                        {(stat.featured ?? 0) > 0 && (
                           <div className="ml-2 text-sm text-blue-600">
                             ({stat.featured} featured)
                           </div>
