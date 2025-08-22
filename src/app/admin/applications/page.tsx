@@ -24,7 +24,7 @@ import { Button } from '@/components/ui/Button';
 import { applicationsApi } from '@/lib/api';
 
 const statusOptions = ['all', 'pending', 'review', 'approved', 'rejected'];
-const programOptions = ['all', 'early-years', 'primary', 'secondary'];
+const programOptions = ['all', 'playgroup', 'nursery', 'pre-primary', 'primary'];
 
 interface Application {
   _id: string;
@@ -81,9 +81,10 @@ export default function AdminApplications() {
   // Format program display name
   const formatProgram = (program: string) => {
     switch (program) {
-      case 'early-years': return 'Early Years';
+      case 'playgroup': return 'Playgroup';
+      case 'nursery': return 'Nursery';
+      case 'pre-primary': return 'Pre-Primary';
       case 'primary': return 'Primary School';
-      case 'secondary': return 'Secondary School';
       default: return program;
     }
   };

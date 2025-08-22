@@ -104,9 +104,10 @@ export default function AdminDashboard() {
   // Format program helper
   const formatProgram = (program: string) => {
     switch (program) {
-      case 'early-years': return 'Early Years';
+      case 'playgroup': return 'Playgroup';
+      case 'nursery': return 'Nursery';
+      case 'pre-primary': return 'Pre-Primary';
       case 'primary': return 'Primary School';
-      case 'secondary': return 'Secondary School';
       default: return program;
     }
   };
