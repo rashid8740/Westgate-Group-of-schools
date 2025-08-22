@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Lock, User, Eye, EyeOff, Shield, AlertCircle, CheckCircle } from 'lucide-react';
+import { Lock, User, Eye, EyeOff, Shield, AlertCircle } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/Button';
@@ -47,12 +47,6 @@ export default function AdminLogin() {
     }
   };
 
-  // Auto-fill demo credentials for development
-  const fillDemoCredentials = () => {
-    setUsername('admin');
-    setPassword('westgate2024');
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 flex items-center justify-center p-4">
       <motion.div
@@ -89,7 +83,7 @@ export default function AdminLogin() {
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-red focus:border-transparent transition-all duration-200 text-slate-900 placeholder-slate-500"
+                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-0 focus:outline-none focus:border-primary-red transition-all duration-200 text-slate-900 placeholder-slate-500"
                     placeholder="Enter your username"
                     required
                     autoComplete="username"
@@ -109,7 +103,7 @@ export default function AdminLogin() {
                     type={showPassword ? 'text' : 'password'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-12 pr-12 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary-red focus:border-transparent transition-all duration-200 text-slate-900 placeholder-slate-500"
+                    className="w-full pl-12 pr-12 py-4 bg-slate-50 border border-slate-200 rounded-xl focus:ring-0 focus:outline-none focus:border-primary-red transition-all duration-200 text-slate-900 placeholder-slate-500"
                     placeholder="Enter your password"
                     required
                     autoComplete="current-password"
@@ -157,32 +151,6 @@ export default function AdminLogin() {
                 )}
               </Button>
             </form>
-
-            {/* Demo Credentials */}
-            <div className="mt-8 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl">
-              <div className="flex items-center gap-2 mb-3">
-                <CheckCircle className="h-5 w-5 text-blue-600" />
-                <h3 className="text-sm font-semibold text-blue-800">Demo Access</h3>
-              </div>
-              <div className="grid grid-cols-2 gap-4 text-sm mb-3">
-                <div>
-                  <span className="text-blue-600 font-medium">Username:</span>
-                  <p className="text-blue-800 font-mono bg-blue-100 px-2 py-1 rounded mt-1">admin</p>
-                </div>
-                <div>
-                  <span className="text-blue-600 font-medium">Password:</span>
-                  <p className="text-blue-800 font-mono bg-blue-100 px-2 py-1 rounded mt-1">westgate2024</p>
-                </div>
-              </div>
-              <button
-                type="button"
-                onClick={fillDemoCredentials}
-                className="text-blue-600 hover:text-blue-800 text-sm font-medium underline transition-colors"
-                disabled={isLoading}
-              >
-                Auto-fill credentials
-              </button>
-            </div>
 
             {/* Footer */}
             <div className="mt-8 pt-6 border-t border-slate-200 text-center">
